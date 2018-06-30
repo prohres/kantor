@@ -4,11 +4,11 @@
 		<meta charset="UTF-8">
 		<title>KANTOR | ОБМІН</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
+		
 	</head>
 	<body>
 		<div id="wrapper">
 			<header>
-
 				<nav>
 					<ul class="menu-nav">
 						<li><a href="#FOREX" aria->FOREX</a></li>
@@ -18,10 +18,8 @@
 						<li><a href="#ABOUTUS">ABOUT US</a></li>
 					</ul>
 				</nav>
-
 				<div class="description">
-
-					<div class="description1">
+					<div>
 						<figure>
 							<img src="images/shopping-cart-full.png" alt="Wholesale courses">
 							<figcaption>Wholesale courses</figcaption>
@@ -35,99 +33,134 @@
 							<figcaption>+3 8 097 999 99 99</figcaption>
 						</figure>
 					</div>
-
 					<a href="index.html">
 						<img class="logo-header" src="images/kantor_logo.png" alt="Home page">
 					</a>
-
-					<div class="description2">
+					<div>
 						<figure>
 							<img src="images/economic-growth.png" alt="Acceptance of coins">
 							<figcaption>Acceptance of coins</figcaption>
 						</figure>
 						<figure>
-							<img src="images/money-exchange.png" alt="Replacing damaged banknotes">
-							<figcaption>Replacing damaged banknotes</figcaption>
+							<img src="images/money-exchange.png" alt="Replacing banknotes">
+							<figcaption>Replacing banknotes</figcaption>
 						</figure>
 						<figure>
 							<img src="images/home-telephone.png" alt="+3 8 050 999 99 99">
 							<figcaption>+3 8 050 999 99 99</figcaption>
 						</figure>
 					</div>
-
 				</div>
-
 			</header>
-
+			<div class="anotherheader">
+				<h2 id="FOREX">FOREX</h2>
+				<h3>Bid & Ask & Chart</h3>
+			</div>
 			<section class="forex">
-
-				<div class="anotherheader">
-					<h2 id="FOREX">FOREX</h2>
-					<h3>Bid & Ask & Chart</h3>
-				</div>
-
 				<table class="grid-forex">
+					<caption>
+						<time id="date" datetime="today's date">00/00/0000</time>
+						<time id="time" datetime="time is now">00:00:00</time>
+					</caption>
 					<tr>
-						<th><time datetime="12:09:54 07.06.2018">12:09:54 07.06.2018</time></th>
+						<th>Currency pairs</th>
 						<th>Bid</th>
 						<th>Ask</th>
 					</tr>
 					<tr>
 						<td>EURUSD</td>
-						<td>1.18174</td>
-						<td>1.18177</td>
+						<td id="eurusdbid"></td>
+						<td id="eurusdask"></td>
 					</tr>
 					<tr>
 						<td>GBPUSD</td>
-						<td>1.34085</td>
-						<td>1.34089</td>
+						<td id="gbpusdbid"></td>
+						<td id="gbpusdask"></td>
 					</tr>
 					<tr>
 						<td>USDRUB</td>
-						<td>61.98145</td>
-						<td>61.99805</td>
+						<td id="usdrubbid"></td>
+						<td id="usdrubask"></td>
 					</tr>
 					<tr>
 						<td>USDCAD</td>
-						<td>1.29591</td>
-						<td>1.29596</td>
+						<td id="usdcadbid"></td>
+						<td id="usdcadask"></td>
 					</tr>
 					<tr>
 						<td>USDPLN</td>
-						<td>3.60620</td>
-						<td>3.60790</td>
+						<td id="usdplnbid"></td>
+						<td id="usdplnask"></td>
 					</tr>
 				</table>
 				
-				<figure class="char-forex">
-					<img src="">
-					<figcaption></figcaption>
-				</figure>
+				
+   
 				
 			</section>
-			<section class="nbu">
+			
 				<div class="anotherheader">
 					<h2 id="NBU">NBU</h2>
 					<h3>Official exchange rate & Char</h3>
 				</div>
+			<section class="nbu">	
+				<table class="grid-nbu">
+					<caption>
+						<time id="date" datetime="today's date">00/00/0000</time>
+						<time id="time" datetime="time is now">00:00:00</time>
+					</caption>
+					<tr>
+						<th>Currency pairs</th>
+						<th>Bid</th>
+						<th>Ask</th>
+					</tr>
+					<tr>
+						<td>EURUSD</td>
+						<td id="eurusdbid"></td>
+						<td id="eurusdask"></td>
+					</tr>
+					<tr>
+						<td>GBPUSD</td>
+						<td id="gbpusdbid"></td>
+						<td id="gbpusdask"></td>
+					</tr>
+					<tr>
+						<td>USDRUB</td>
+						<td id="usdrubbid"></td>
+						<td id="usdrubask"></td>
+					</tr>
+					<tr>
+						<td>USDCAD</td>
+						<td id="usdcadbid"></td>
+						<td id="usdcadask"></td>
+					</tr>
+					<tr>
+						<td>USDPLN</td>
+						<td id="usdplnbid"></td>
+						<td id="usdplnask"></td>
+					</tr>
+				</table>
 			</section>
-			<section class="kantor">
+			
 				<div class="anotherheader">
 					<h2 id="KANTOR">KANTOR</h2>
 					<h3>Our exchange rate & Currency converter</h3>
 				</div>
+			<section class="kantor">
 			</section>
-			<section class="platforms">
+			
 				<div class="anotherheader">
 					<h2 id="PLATFORMS">PLATFORMS</h2>
 					<h3>Download for your platform</h3>
 				</div>
+			<section class="platforms">
 			</section>
-			<section class="aboutus">
+			
 				<div class="anotherheader">
 					<h2 id="ABOUTUS">ABOUT US</h2>
 					<h3>More Info</h3>
 				</div>
+			<section class="aboutus">
 			</section>
 			<footer>
 				
@@ -142,7 +175,9 @@
 
 
 
-
-			
+	
+	<script type="text/javascript" src="script/date.js"></script>
+	<script type="text/javascript" src="script/time.js"></script>
+	<script type="text/javascript" src="script/quotesforex.js"></script>
 	</body>
 </html>

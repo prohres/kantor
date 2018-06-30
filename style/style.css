@@ -4,10 +4,10 @@
 }
 body {
 	min-width: 1040px;
-	font-family: 'Maven Pro', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 	color: #34312d;
 	background-color: #f3f3f4;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 #wrapper {
@@ -16,11 +16,12 @@ body {
 }
 
 header {
-	height: 370px;
+	height: 360px;
 	margin: 0px auto;
 }
 
 .menu-nav {
+	display: flex;
 	width: 1000px;
 	margin: 0 auto;
 	list-style: none;
@@ -28,11 +29,10 @@ header {
 
 .menu-nav li {
 	position: relative;
-	float: left;
-	margin: 0;
 	padding: 5px 0px 15px 0px;
 	border-right: 3px solid #d9c5b2;
 	width: 197px;
+	height: 35px;
 	text-align: center;
 	background-color: #7e7f83;
 }
@@ -62,45 +62,38 @@ header {
 	content: '';
 	width: 0;
 	height: 0;
-	top: 48px;
+	top: 55px;
 	left: 50%;
 	margin-left: -20px;
 	border: 20px solid #ffffff;
-    border-top-color: #34312d;
-    border-right-color: transparent;
-    border-left-color: transparent;
-    border-bottom: none;
+	border-top-color: #34312d;
+	border-right-color: transparent;
+	border-left-color: transparent;
+	border-bottom: none;
 }
 
 .description {
+	display: flex;
 	width: 1000px;
 	margin: 0 auto;
-}
-
-.description1 {
-	float: left;
-}
-
-.description2 {
-	float: right;
+	padding-top: 5px;
 }
 
 figure {
+	display: flex;
 	width: 400px;
 	height: 100px;
 }
 
 figure img {
-	padding: 18px 0px 18px 54px;
+	display: block;
+	padding: 18px 46px 18px 90px;
 	width: 64px;
 }
 
-figcaption{
-	position: relative;
-	font-size: 18px;
-	padding-left: 140px;
-	bottom: 70px;
-	width: 250px;
+figcaption {
+	display: block;
+	padding: 40px 0px;
 }
 
 img.logo-header {
@@ -108,18 +101,13 @@ img.logo-header {
 	width: 192px;
 }
 
-section {
-	width: 1000px;
-	margin: 0 auto;
-	height: 400px;
-	
-}
-
 div.anotherheader {
 	position: relative;
+	width: 1000px;
+	margin: 0 auto;
 	background-color: #7e7f83;
 	color: #d9c5b2;
-	height: 51px;	
+	height: 50px;	
 }
 
 h2 {
@@ -127,7 +115,8 @@ h2 {
 	font-weight: normal;
 	font-size: 24px;
 	text-align: center;
-	width: 200px;	
+	width: 200px;
+	height: 25px	
 }
 
 h2::before {
@@ -146,14 +135,41 @@ h2::before {
 }
 
 h3 {
+	display: inline-block;
 	width: 600px;
+	height: 23px;
 	text-align: center;
-	font-size: 20px;
 	font-weight: normal;
+	font-size: 18px;
 }
 
-table {
-	margin: 50px;
+section {
+	display: flex;
+	width: 1000px;
+	margin: 0 auto;
+	height: 350px;
+	
+}
+
+table.grid-forex {
+	border-collapse: collapse;
+	margin: 25px;
+	width: 400px;
+}
+
+caption {
+	padding: 10px 10px;
+	font-weight: bold;
+}
+
+tr:hover > td {
+	background: #d9c5b2;
+}
+
+th, td {
+
+	padding: 10px 10px;
+	text-align: center;
 }
 
 footer {
