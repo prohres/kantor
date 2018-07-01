@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>KANTOR | ОБМІН</title>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
-		
+		<!-- "7AS0vE' -->
 	</head>
 	<body>
 		<div id="wrapper">
@@ -35,7 +35,10 @@
 					</div>
 					<a href="index.html">
 						<img class="logo-header" src="images/kantor_logo.png" alt="Home page">
-					</a>
+						<time id="date" datetime="today's date">00/00/0000</time>
+						<br>
+						<time id="time" datetime="time is now">00:00:00</time>
+					</a>					
 					<div>
 						<figure>
 							<img src="images/economic-growth.png" alt="Acceptance of coins">
@@ -54,113 +57,181 @@
 			</header>
 			<div class="anotherheader">
 				<h2 id="FOREX">FOREX</h2>
-				<h3>Bid & Ask & Chart</h3>
+				<h3>Bid &amp; Ask &amp; Chart</h3>
 			</div>
-			<section class="forex">
-				<table class="grid-forex">
-					<caption>
-						<time id="date" datetime="today's date">00/00/0000</time>
-						<time id="time" datetime="time is now">00:00:00</time>
-					</caption>
+			<section>
+				<table>
 					<tr>
-						<th>Currency pairs</th>
+						<th>Currency Pair</th>
 						<th>Bid</th>
 						<th>Ask</th>
 					</tr>
 					<tr>
 						<td>EURUSD</td>
-						<td id="eurusdbid"></td>
-						<td id="eurusdask"></td>
+						<td id="EURUSDBID"></td>
+						<td id="EURUSDASK"></td>
 					</tr>
 					<tr>
 						<td>GBPUSD</td>
-						<td id="gbpusdbid"></td>
-						<td id="gbpusdask"></td>
+						<td id="GBPUSDBID"></td>
+						<td id="GBPUSDASK"></td>
 					</tr>
 					<tr>
 						<td>USDRUB</td>
-						<td id="usdrubbid"></td>
-						<td id="usdrubask"></td>
+						<td id="USDRUBBID"></td>
+						<td id="USDRUBASK"></td>
 					</tr>
 					<tr>
 						<td>USDCAD</td>
-						<td id="usdcadbid"></td>
-						<td id="usdcadask"></td>
+						<td id="USDCADBID"></td>
+						<td id="USDCADASK"></td>
 					</tr>
 					<tr>
 						<td>USDPLN</td>
-						<td id="usdplnbid"></td>
-						<td id="usdplnask"></td>
-					</tr>
-				</table>
-				
-				
-   
-				
-			</section>
-			
-				<div class="anotherheader">
-					<h2 id="NBU">NBU</h2>
-					<h3>Official exchange rate & Char</h3>
-				</div>
-			<section class="nbu">	
-				<table class="grid-nbu">
-					<caption>
-						<time id="date" datetime="today's date">00/00/0000</time>
-						<time id="time" datetime="time is now">00:00:00</time>
-					</caption>
-					<tr>
-						<th>Currency pairs</th>
-						<th>Bid</th>
-						<th>Ask</th>
+						<td id="USDPLNBID"></td>
+						<td id="USDPLNASK"></td>
 					</tr>
 					<tr>
-						<td>EURUSD</td>
-						<td id="eurusdbid"></td>
-						<td id="eurusdask"></td>
-					</tr>
-					<tr>
-						<td>GBPUSD</td>
-						<td id="gbpusdbid"></td>
-						<td id="gbpusdask"></td>
-					</tr>
-					<tr>
-						<td>USDRUB</td>
-						<td id="usdrubbid"></td>
-						<td id="usdrubask"></td>
-					</tr>
-					<tr>
-						<td>USDCAD</td>
-						<td id="usdcadbid"></td>
-						<td id="usdcadask"></td>
-					</tr>
-					<tr>
-						<td>USDPLN</td>
-						<td id="usdplnbid"></td>
-						<td id="usdplnask"></td>
+						<td>CHFUSD</td>
+						<td id="CHFUSDBID"></td>
+						<td id="CHFUSDASK"></td>
 					</tr>
 				</table>
 			</section>
-			
-				<div class="anotherheader">
-					<h2 id="KANTOR">KANTOR</h2>
-					<h3>Our exchange rate & Currency converter</h3>
-				</div>
-			<section class="kantor">
+			<div class="anotherheader">
+				<h2 id="NBU">NBU</h2>
+				<h3>Official exchange rate &amp; Char</h3>
+			</div>
+			<section>	
+				<table>
+					<tr>
+						<th colspan="2">Currency Code</th>
+						<th>Rate</th>
+					</tr>
+					<tr>
+						<td>USD</td>
+						<td ><img src="" alt=""></td>
+						<td id="USD"></td>
+					</tr>
+					<tr>
+						<td>EUR</td>
+						<td ><img src="" alt=""></td>
+						<td id="EUR"></td>
+					</tr>
+					<tr>
+						<td>GBP</td>
+						<td><img src="" alt=""></td>
+						<td id="GBP"></td>
+					</tr>
+					<tr>
+						<td>RUB</td>
+						<td><img src="" alt=""></td>
+						<td id="RUB"></td>
+					</tr>
+					<tr>
+						<td>CAD</td>
+						<td><img src="" alt=""></td>
+						<td id="CAD"></td>
+					</tr>
+					<tr>
+						<td>PLN</td>
+						<td><img src="" alt=""></td>
+						<td id="PLN"></td>
+					</tr>
+				</table>
 			</section>
-			
-				<div class="anotherheader">
-					<h2 id="PLATFORMS">PLATFORMS</h2>
-					<h3>Download for your platform</h3>
-				</div>
-			<section class="platforms">
+			<div class="anotherheader">
+				<h2 id="KANTOR">KANTOR</h2>
+				<h3>Our exchange rate &amp; Currency converter</h3>
+			</div>
+			<section>
+				<table class="grid-kantor">
+					<tr>
+						<th colspan="2">Currency</th>
+						<th>Bay</th>
+						<th>Sell</th>
+					</tr>
+					<tr>
+						<td>USD</td>
+						<td ><img src="" alt=""></td>
+						<td id="USDBAY"></td>
+						<td id="USDSELL"></td>
+					</tr>
+					<tr>
+						<td>EUR</td>
+						<td ><img src="" alt=""></td>
+						<td id="EURBAY"></td>
+						<td id="EURSELL"></td>
+					</tr>
+					<tr>
+						<td>GBP</td>
+						<td><img src="" alt=""></td>
+						<td id="GBPBAY"></td>
+						<td id="GBPSELL"></td>
+					</tr>
+					<tr>
+						<td>RUB</td>
+						<td><img src="" alt=""></td>
+						<td id="RUBBAY"></td>
+						<td id="RUBSELL"></td>
+					</tr>
+					<tr>
+						<td>CAD</td>
+						<td><img src="" alt=""></td>
+						<td id="CADBAY"></td>
+						<td id="CADSELL"></td>
+					</tr>
+					<tr>
+						<td>PLN</td>
+						<td><img src="" alt=""></td>
+						<td id="PLNBAY"></td>
+						<td id="PLNSELL"></td>
+					</tr>
+				</table>
+				<form>
+					<table class="converter">
+						<tr>
+							<th colspan="2">Currency converter</th>
+						</tr>
+						<tr>
+							<td><label>Changes:</label></td>
+							
+						</tr>
+						<tr>
+							<td colspan="2"><input type="text" name="changes-sum" value="100"></td>
+							
+						</tr>
+						<tr>
+							<td colspan="2">---</td>
+							
+						</tr>
+						<tr>
+							<td colspan="2"><button>-----</button></td>
+							
+						</tr>
+						<tr>
+							<td><label>Get:</label></td>
+							
+						</tr>
+						<tr>
+							<td colspan="2"><input type="text" name="changes-sum" value="2600"></td>
+							
+						</tr>
+					</table>
+				</form>
+			</section>
+			<div class="anotherheader">
+				<h2 id="PLATFORMS">PLATFORMS</h2>
+				<h3>Download for your platform</h3>
+			</div>
+			<section>
 			</section>
 			
 				<div class="anotherheader">
 					<h2 id="ABOUTUS">ABOUT US</h2>
 					<h3>More Info</h3>
 				</div>
-			<section class="aboutus">
+			<section>
 			</section>
 			<footer>
 				
@@ -179,5 +250,7 @@
 	<script type="text/javascript" src="script/date.js"></script>
 	<script type="text/javascript" src="script/time.js"></script>
 	<script type="text/javascript" src="script/quotesforex.js"></script>
+	<script type="text/javascript" src="script/exchangenbu.js"></script>
+	<script type="text/javascript" src="script/ratekantor.js"></script>
 	</body>
 </html>

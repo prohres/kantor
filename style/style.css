@@ -79,6 +79,13 @@ header {
 	padding-top: 5px;
 }
 
+.description a {
+	text-decoration: none;
+	color: #34312d;
+	text-align: center;
+	font-weight: bold;
+}
+
 figure {
 	display: flex;
 	width: 400px;
@@ -87,7 +94,7 @@ figure {
 
 figure img {
 	display: block;
-	padding: 18px 46px 18px 90px;
+	padding: 18px 68px 18px 68px;
 	width: 64px;
 }
 
@@ -97,7 +104,7 @@ figcaption {
 }
 
 img.logo-header {
-	padding: 50px 4px 30px 4px;
+	padding: 18px 4px 0px 4px;
 	width: 192px;
 }
 
@@ -151,15 +158,11 @@ section {
 	
 }
 
-table.grid-forex {
+table {
 	border-collapse: collapse;
-	margin: 25px;
+	margin: 25px 0px 25px 25px;
 	width: 400px;
-}
-
-caption {
-	padding: 10px 10px;
-	font-weight: bold;
+	/*border: 1px solid black;*/
 }
 
 tr:hover > td {
@@ -167,9 +170,9 @@ tr:hover > td {
 }
 
 th, td {
-
 	padding: 10px 10px;
 	text-align: center;
+	border: 1px solid black;
 }
 
 footer {
@@ -177,6 +180,35 @@ footer {
 	height: 135px;
 	width: 1000px;
 }
+
+.grid-kantor tr:nth-child(odd), .converter tr:nth-child(1) {
+	background: #d9c5b2;
+}
+
+.grid-kantor tr:hover > td, .converter tr:hover > td {
+	background: none;
+}
+
+.converter {
+	margin-left: 0px;
+	width: 550px; 
+}
+
+.converter td {
+	text-align: left;
+}
+
+.converter td label {
+	margin-left: 75px;
+}
+
+.converter td input {
+	margin-left: 75px;
+	text-align: right;
+	width: 300px;
+}
+
+
 
 
 
