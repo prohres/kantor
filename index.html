@@ -1,256 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>KANTOR | ОБМІН</title>
-		<link rel="stylesheet" type="text/css" href="style/style.css">
-		<!-- "7AS0vE' -->
-	</head>
-	<body>
-		<div id="wrapper">
-			<header>
-				<nav>
-					<ul class="menu-nav">
-						<li><a href="#FOREX" aria->FOREX</a></li>
-						<li><a href="#NBU">NBU</a></li>
-						<li><a href="#KANTOR">KANTOR</a></li>
-						<li><a href="#PLATFORMS">PLATFORMS</a></li>
-						<li><a href="#ABOUTUS">ABOUT US</a></li>
-					</ul>
-				</nav>
-				<div class="description">
-					<div>
-						<figure>
-							<img src="images/shopping-cart-full.png" alt="Wholesale courses">
-							<figcaption>Wholesale courses</figcaption>
-						</figure>
-						<figure>
-							<img src="images/money-searching.png" alt="Checking banknotes">
-							<figcaption>Checking banknotes</figcaption>
-						</figure>
-						<figure>
-							<img src="images/home-telephone.png" alt="+3 8 097 999 99 99">
-							<figcaption>+3 8 097 999 99 99</figcaption>
-						</figure>
-					</div>
-					<a href="index.html">
-						<img class="logo-header" src="images/kantor_logo.png" alt="Home page">
-						<time id="date" datetime="today's date">00/00/0000</time>
-						<br>
-						<time id="time" datetime="time is now">00:00:00</time>
-					</a>					
-					<div>
-						<figure>
-							<img src="images/economic-growth.png" alt="Acceptance of coins">
-							<figcaption>Acceptance of coins</figcaption>
-						</figure>
-						<figure>
-							<img src="images/money-exchange.png" alt="Replacing banknotes">
-							<figcaption>Replacing banknotes</figcaption>
-						</figure>
-						<figure>
-							<img src="images/home-telephone.png" alt="+3 8 050 999 99 99">
-							<figcaption>+3 8 050 999 99 99</figcaption>
-						</figure>
-					</div>
+<head>
+	<meta charset="UTF-8">
+	<title>KANTOR | ОБМІН</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css"></head>
+<body>
+	<div id="wrapper">
+		<header>
+			<nav>
+				<ul class="menu-nav">
+					<li>
+						<a href="#FOREX" aria-label="Forex Bid &amp; Ask &amp; Chart">FOREX</a>
+					</li>
+					<li>
+						<a href="#NBU" aria-label="Nbu official exchange rate &amp; Char">NBU</a>
+					</li>
+					<li>
+						<a href="#KANTOR" aria-label="Kantor exchange rate &amp; Currency converter">KANTOR</a>
+					</li>
+					<li>
+						<a href="#PLATFORMS" aria-label="Download Kantor for your platform">PLATFORMS</a>
+					</li>
+					<li>
+						<a href="#ABOUTUS" aria-label="More info about us">ABOUT US</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="description">
+				<div>
+					<figure>
+						<img src="images/shopping-cart-full.png" alt="Wholesale courses">
+						<figcaption>Wholesale courses</figcaption>
+					</figure>
+					<figure>
+						<img src="images/money-searching.png" alt="Checking banknotes">
+						<figcaption>Checking banknotes</figcaption>
+					</figure>
+					<figure>
+						<img src="images/home-telephone.png" alt="+3 8 097 999 99 99">
+						<figcaption>+3 8 097 999 99 99</figcaption>
+					</figure>
 				</div>
-			</header>
-			<div class="anotherheader">
-				<h2 id="FOREX">FOREX</h2>
-				<h3>Bid &amp; Ask &amp; Chart</h3>
-			</div>
-			<section>
-				<table>
-					<tr>
-						<th>Currency Pair</th>
-						<th>Bid</th>
-						<th>Ask</th>
-					</tr>
-					<tr>
-						<td>EURUSD</td>
-						<td id="EURUSDBID"></td>
-						<td id="EURUSDASK"></td>
-					</tr>
-					<tr>
-						<td>GBPUSD</td>
-						<td id="GBPUSDBID"></td>
-						<td id="GBPUSDASK"></td>
-					</tr>
-					<tr>
-						<td>USDRUB</td>
-						<td id="USDRUBBID"></td>
-						<td id="USDRUBASK"></td>
-					</tr>
-					<tr>
-						<td>USDCAD</td>
-						<td id="USDCADBID"></td>
-						<td id="USDCADASK"></td>
-					</tr>
-					<tr>
-						<td>USDPLN</td>
-						<td id="USDPLNBID"></td>
-						<td id="USDPLNASK"></td>
-					</tr>
-					<tr>
-						<td>CHFUSD</td>
-						<td id="CHFUSDBID"></td>
-						<td id="CHFUSDASK"></td>
-					</tr>
-				</table>
-			</section>
-			<div class="anotherheader">
-				<h2 id="NBU">NBU</h2>
-				<h3>Official exchange rate &amp; Char</h3>
-			</div>
-			<section>	
-				<table>
-					<tr>
-						<th colspan="2">Currency Code</th>
-						<th>Rate</th>
-					</tr>
-					<tr>
-						<td>USD</td>
-						<td ><img src="" alt=""></td>
-						<td id="USD"></td>
-					</tr>
-					<tr>
-						<td>EUR</td>
-						<td ><img src="" alt=""></td>
-						<td id="EUR"></td>
-					</tr>
-					<tr>
-						<td>GBP</td>
-						<td><img src="" alt=""></td>
-						<td id="GBP"></td>
-					</tr>
-					<tr>
-						<td>RUB</td>
-						<td><img src="" alt=""></td>
-						<td id="RUB"></td>
-					</tr>
-					<tr>
-						<td>CAD</td>
-						<td><img src="" alt=""></td>
-						<td id="CAD"></td>
-					</tr>
-					<tr>
-						<td>PLN</td>
-						<td><img src="" alt=""></td>
-						<td id="PLN"></td>
-					</tr>
-				</table>
-			</section>
-			<div class="anotherheader">
-				<h2 id="KANTOR">KANTOR</h2>
-				<h3>Our exchange rate &amp; Currency converter</h3>
-			</div>
-			<section>
-				<table class="grid-kantor">
-					<tr>
-						<th colspan="2">Currency</th>
-						<th>Bay</th>
-						<th>Sell</th>
-					</tr>
-					<tr>
-						<td>USD</td>
-						<td ><img src="" alt=""></td>
-						<td id="USDBAY"></td>
-						<td id="USDSELL"></td>
-					</tr>
-					<tr>
-						<td>EUR</td>
-						<td ><img src="" alt=""></td>
-						<td id="EURBAY"></td>
-						<td id="EURSELL"></td>
-					</tr>
-					<tr>
-						<td>GBP</td>
-						<td><img src="" alt=""></td>
-						<td id="GBPBAY"></td>
-						<td id="GBPSELL"></td>
-					</tr>
-					<tr>
-						<td>RUB</td>
-						<td><img src="" alt=""></td>
-						<td id="RUBBAY"></td>
-						<td id="RUBSELL"></td>
-					</tr>
-					<tr>
-						<td>CAD</td>
-						<td><img src="" alt=""></td>
-						<td id="CADBAY"></td>
-						<td id="CADSELL"></td>
-					</tr>
-					<tr>
-						<td>PLN</td>
-						<td><img src="" alt=""></td>
-						<td id="PLNBAY"></td>
-						<td id="PLNSELL"></td>
-					</tr>
-				</table>
-				<form>
-					<table class="converter">
-						<tr>
-							<th colspan="2">Currency converter</th>
-						</tr>
-						<tr>
-							<td><label>Changes:</label></td>
-							
-						</tr>
-						<tr>
-							<td colspan="2"><input type="text" name="changes-sum" value="100"></td>
-							
-						</tr>
-						<tr>
-							<td colspan="2">---</td>
-							
-						</tr>
-						<tr>
-							<td colspan="2"><button>-----</button></td>
-							
-						</tr>
-						<tr>
-							<td><label>Get:</label></td>
-							
-						</tr>
-						<tr>
-							<td colspan="2"><input type="text" name="changes-sum" value="2600"></td>
-							
-						</tr>
-					</table>
-				</form>
-			</section>
-			<div class="anotherheader">
-				<h2 id="PLATFORMS">PLATFORMS</h2>
-				<h3>Download for your platform</h3>
-			</div>
-			<section>
-			</section>
-			
-				<div class="anotherheader">
-					<h2 id="ABOUTUS">ABOUT US</h2>
-					<h3>More Info</h3>
+				<a href="index.html">
+					<img class="logo-header" src="images/kantor-logo.png" alt="home page">
+					<time id="date" datetime="today's date">00/00/0000</time>
+
+					<time id="time" datetime="time is now">00:00:00</time>
+				</a>
+				<div>
+					<figure>
+						<img src="images/economic-growth.png" alt="Acceptance of coins">
+						<figcaption>Acceptance of coins</figcaption>
+					</figure>
+					<figure>
+						<img src="images/money-exchange.png" alt="Replacing banknotes">
+						<figcaption>Replacing banknotes</figcaption>
+					</figure>
+					<figure>
+						<img src="images/home-telephone.png" alt="+3 8 050 999 99 99">
+						<figcaption>+3 8 050 999 99 99</figcaption>
+					</figure>
 				</div>
-			<section>
-			</section>
-			<footer>
-				
-			</footer>
-
-
-
+			</div>
+		</header>
+		<div class="anotherheader">
+			<h2 id="FOREX">FOREX</h2>
+			<h3>Forex Bid &amp; Ask &amp; Chart</h3>
 		</div>
-
-
-
-
-
-
-	
+		<section class="forex">
+			<table class="grid-forex">
+				<tr>
+					<th colspan="2">Currency Pair</th>
+					<th>Bid</th>
+					<th>Ask</th>
+				</tr>
+				<tr>
+					<td>EURUSD</td>
+					<td>
+						<img src="images/eurusd.png" alt="eurusd currency pair"></td>
+					<td id="EURUSDBID"></td>
+					<td id="EURUSDASK"></td>
+				</tr>
+				<tr>
+					<td>GBPUSD</td>
+					<td>
+						<img src="images/gbpusd.png" alt="gbpusd currency pair"></td>
+					<td id="GBPUSDBID"></td>
+					<td id="GBPUSDASK"></td>
+				</tr>
+				<tr>
+					<td>USDRUB</td>
+					<td>
+						<img src="images/usdrub.png" alt="usdrub currency pair"></td>
+					<td id="USDRUBBID"></td>
+					<td id="USDRUBASK"></td>
+				</tr>
+				<tr>
+					<td>USDCAD</td>
+					<td>
+						<img src="images/usdcad.png" alt="usdcad currency pair"></td>
+					<td id="USDCADBID"></td>
+					<td id="USDCADASK"></td>
+				</tr>
+				<tr>
+					<td>USDPLN</td>
+					<td>
+						<img src="images/usdpln.png" alt="usdpln currency pair"></td>
+					<td id="USDPLNBID"></td>
+					<td id="USDPLNASK"></td>
+				</tr>
+				<tr>
+					<td>CHFUSD</td>
+					<td>
+						<img src="images/chfusd.png" alt="chfusd currency pair"></td>
+					<td id="CHFUSDBID"></td>
+					<td id="CHFUSDASK"></td>
+				</tr>
+			</table>
+		</section>
+		<div class="anotherheader">
+			<h2 id="NBU">NBU</h2>
+			<h3>Nbu official exchange rate &amp; Char</h3>
+		</div>
+		<section class="nbu">
+			<table class="grid-nbu">
+				<tr>
+					<th colspan="2">Currency Code</th>
+					<th>Rate</th>
+				</tr>
+				<tr>
+					<td>USD</td>
+					<td >
+						<img src="images/united-states.png" alt="united states flag"></td>
+					<td id="USD"></td>
+				</tr>
+				<tr>
+					<td>EUR</td>
+					<td >
+						<img src="images/european-union.png" alt="european union flag"></td>
+					<td id="EUR"></td>
+				</tr>
+				<tr>
+					<td>GBP</td>
+					<td>
+						<img src="images/united-kingdom.png" alt="united kingdom flag"></td>
+					<td id="GBP"></td>
+				</tr>
+				<tr>
+					<td>RUB</td>
+					<td>
+						<img src="images/russia.png" alt="russia flag"></td>
+					<td id="RUB"></td>
+				</tr>
+				<tr>
+					<td>CAD</td>
+					<td>
+						<img src="images/canada.png" alt="canada flag"></td>
+					<td id="CAD"></td>
+				</tr>
+				<tr>
+					<td>PLN</td>
+					<td>
+						<img src="images/poland.png" alt="poland flag"></td>
+					<td id="PLN"></td>
+				</tr>
+			</table>
+		</section>
+		<div class="anotherheader">
+			<h2 id="KANTOR">KANTOR</h2>
+			<h3>Kantor exchange rate &amp; Currency converter</h3>
+		</div>
+		<section class="kantor">
+			<table class="grid-kantor">
+				<tr>
+					<th colspan="2">Currency</th>
+					<th>Bay</th>
+					<th>Sell</th>
+				</tr>
+				<tr>
+					<td>USD</td>
+					<td >
+						<img src="images/united-states.png" alt="united states flag"></td>
+					<td id="USDBAY"></td>
+					<td id="USDSELL"></td>
+				</tr>
+				<tr>
+					<td>EUR</td>
+					<td >
+						<img src="images/european-union.png" alt="european union flag"></td>
+					<td id="EURBAY"></td>
+					<td id="EURSELL"></td>
+				</tr>
+				<tr>
+					<td>GBP</td>
+					<td>
+						<img src="images/united-kingdom.png" alt="united kingdom flag"></td>
+					<td id="GBPBAY"></td>
+					<td id="GBPSELL"></td>
+				</tr>
+				<tr>
+					<td>RUB</td>
+					<td>
+						<img src="images/russia.png" alt="russia flag"></td>
+					<td id="RUBBAY"></td>
+					<td id="RUBSELL"></td>
+				</tr>
+				<tr>
+					<td>CAD</td>
+					<td>
+						<img src="images/canada.png" alt="canada flag"></td>
+					<td id="CADBAY"></td>
+					<td id="CADSELL"></td>
+				</tr>
+				<tr>
+					<td>PLN</td>
+					<td>
+						<img src="images/poland.png" alt="poland flag"></td>
+					<td id="PLNBAY"></td>
+					<td id="PLNSELL"></td>
+				</tr>
+			</table>
+			<table class="converter">
+				<tr>
+					<th colspan="2">Currency converter</th>
+				</tr>
+				<tr>
+					<td>
+						<label>Changes:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" name="changes-sum" value="100"></td>
+				</tr>
+				<tr>
+					<td colspan="2">---</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button>-----</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Get:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" name="changes-sum" value="2600"></td>
+				</tr>
+			</table>
+		</section>
+		<div class="anotherheader">
+			<h2 id="PLATFORMS">PLATFORMS</h2>
+			<h3>Download Kantor for your platform</h3>
+		</div>
+		<section class="platforms">
+			<img src="images/platforms.png" alt="apply platforms">
+			<div class="download">
+				<h3>DOWNLOAD KANTOR</h3>
+				<figure>
+					<img src="images/android.png" alt="apple logo">
+					<figcaption>
+						<a href="#" aria-label="Download for Android">FOR YOUR PHONES</a>
+					</figcaption>
+				</figure>
+				<figure>
+					<img src="images/apple.png" alt="apple logo">
+					<figcaption>
+						<a href="#" aria-label="Download for MAC">FOR YOUR MAC</a>
+					</figcaption>
+					<figcaption>
+						<a href="#" aria-label="Download for iPad">FOR YOUR iPad</a>
+					</figcaption>
+					<figcaption>
+						<a href="#" aria-label="Download for iPhone">FOR YOUR iPhone</a>
+					</figcaption>
+				</figure>
+				<figure>
+					<img src="images/windows.png" alt="apple logo">
+					<figcaption>
+						<a href="#" aria-label="Download for PC">FOR YOUR PC</a>
+					</figcaption>
+				</figure>
+			</div>
+		</section>
+		<div class="anotherheader">
+			<h2 id="ABOUTUS">ABOUT US</h2>
+			<h3>More info about us</h3>
+		</div>
+		<section class="aboutus">
+			<img class="banking" src="images/banking-license.png" alt="banking license">
+			<div class="address">
+				<h3>CONTACT US</h3>
+				<h4>Postal Address:</h4>
+				<h4>7, Nezalezhnosti St.,</h4>
+				<h4>Ivano-Frankivsk 76018</h4>
+				<h4>Telephone:</h4>
+				<h4>+3 8 097 999 99 99</h4>
+				<h4>+3 8 050 999 99 99</h4>
+				<h4>
+					Website:
+					<a href="#">kantor.if.ua</a>
+				</h4>
+				<h4>E-mail: kantor@gmail.com</h4>
+			</div>
+			<img class="map" src="images/map.png" alt="map"></section>
+		<footer>
+			<ul class="menu-footer">
+				<li>
+					<a href="#FOREX" aria-label="Forex Bid &amp; Ask &amp; Chart">FOREX</a>
+				</li>
+				<li>
+					<a href="#NBU" aria-label="Nbu official exchange rate &amp; Char">NBU</a>
+				</li>
+				<li>
+					<a href="#KANTOR" aria-label="Kantor exchange rate &amp; Currency converter">KANTOR</a>
+				</li>
+				<li>
+					<a href="#PLATFORMS" aria-label="Download Kantor for your platform">PLATFORMS</a>
+				</li>
+				<li>
+					<a href="#ABOUTUS" aria-label="More info about us">ABOUT US</a>
+				</li>
+			</ul>
+			<div class="social">
+				<a href="#" aria-label="Our page on facebook">
+					<img src="images/facebook.png" alt="facebook logo"></a>
+				<a href="#" aria-label="Our channel in the telegram">
+					<img src="images/telegram.png" alt="telegram logo"></a>
+				<a href="#" aria-label="Call us at Viber">
+					<img src="images/viber.png" alt="viber logo"></a>
+				<a href="#" aria-label="Call us at Skype">
+					<img src="images/skype.png" alt="skype logo"></a>
+				<a href="#" aria-label="Our page on twitter">
+					<img src="images/twitter.png" alt="twitter logo"></a>
+				<h3>Stay connected</h3>
+			</div>
+		</footer>
+	</div>
 	<script type="text/javascript" src="script/date.js"></script>
 	<script type="text/javascript" src="script/time.js"></script>
 	<script type="text/javascript" src="script/quotesforex.js"></script>
 	<script type="text/javascript" src="script/exchangenbu.js"></script>
 	<script type="text/javascript" src="script/ratekantor.js"></script>
-	</body>
+</body>
 </html>

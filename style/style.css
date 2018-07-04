@@ -86,29 +86,29 @@ header {
 	font-weight: bold;
 }
 
-figure {
+.description figure {
 	display: flex;
 	width: 400px;
 	height: 100px;
 }
 
-figure img {
+.description figure img {
 	display: block;
 	padding: 18px 68px 18px 68px;
 	width: 64px;
 }
 
-figcaption {
+.description figcaption {
 	display: block;
 	padding: 40px 0px;
 }
 
-img.logo-header {
+.logo-header {
 	padding: 18px 4px 0px 4px;
 	width: 192px;
 }
 
-div.anotherheader {
+.anotherheader {
 	position: relative;
 	width: 1000px;
 	margin: 0 auto;
@@ -117,7 +117,7 @@ div.anotherheader {
 	height: 50px;	
 }
 
-h2 {
+.anotherheader h2 {
 	margin-left: 200px;
 	font-weight: normal;
 	font-size: 24px;
@@ -126,7 +126,7 @@ h2 {
 	height: 25px	
 }
 
-h2::before {
+.anotherheader h2::before {
 	position: absolute;
 	content: '';
 	width: 0;
@@ -141,7 +141,7 @@ h2::before {
 	border-bottom: none;
 }
 
-h3 {
+.anotherheader h3 {
 	display: inline-block;
 	width: 600px;
 	height: 23px;
@@ -154,39 +154,34 @@ section {
 	display: flex;
 	width: 1000px;
 	margin: 0 auto;
-	height: 350px;
-	
+	height: 365px;
 }
 
 table {
 	border-collapse: collapse;
 	margin: 25px 0px 25px 25px;
-	width: 400px;
-	/*border: 1px solid black;*/
+	width: 450px;
 }
 
-tr:hover > td {
+.grid-forex tr:hover > td, .grid-nbu tr:hover > td {
 	background: #d9c5b2;
 }
 
 th, td {
-	padding: 10px 10px;
 	text-align: center;
-	border: 1px solid black;
+	height: 45px;
 }
 
-footer {
-	background-color: #7e7f83;
-	height: 135px;
-	width: 1000px;
+.grid-nbu td > img, .grid-kantor td > img, .grid-forex td > img  {
+	display: flex;
+	margin: 0px auto;
+	height: 32px;
+	border: 1px solid #d9c5b2;
+	border-radius: 32px; 
 }
 
 .grid-kantor tr:nth-child(odd), .converter tr:nth-child(1) {
 	background: #d9c5b2;
-}
-
-.grid-kantor tr:hover > td, .converter tr:hover > td {
-	background: none;
 }
 
 .converter {
@@ -207,6 +202,162 @@ footer {
 	text-align: right;
 	width: 300px;
 }
+
+.platforms > img {
+	width: 397px;
+	height: 248px;
+	margin: auto 0px;
+	border-right: 3px solid #d9c5b2;
+}
+
+.download {
+	position: relative;
+	width: 600px;
+	margin: 60px 0px;
+	font-size: 16px;
+}
+
+.download h3 {
+	height: 50px;
+	text-align: center;
+}
+
+.download figure {
+	position: absolute;
+	display: inline-block;
+	left: 0;
+	width: 200px;
+	height: 200px;
+	text-align: center;
+}
+
+.download figure:nth-of-type(2) {
+	left: 200px;
+}
+
+.download figure:nth-of-type(3) {
+	left: 400px;
+}
+
+.download figure img {
+	display: inline-block;
+	width: 90px;
+	height: 90px;
+}
+
+.download figure figcaption {
+	margin-top: 10px;
+	display: inline-block;
+}
+
+.download figure figcaption a {
+	color: #34312d;
+	text-decoration: none;
+}
+
+.banking {
+	width: 250px;
+	height: 350px;
+	margin: auto 0px;
+}
+
+.address {
+	width: 360px;
+	margin: auto 0px;
+	text-align: center;
+}
+
+.address h4 {
+	margin-top: 5px;
+	color: #34312d;
+}
+
+.address a {
+	text-decoration: none;
+	color: #34312d;
+}
+
+.map {
+	width: 375px;
+	height: 350px;
+	margin: auto 0px;
+}
+
+footer {
+	position: relative;
+	background-color: #7e7f83;
+	height: 165px;
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.menu-footer {
+	display: flex;
+	position: absolute;
+	width: 750px;
+	left: 125px;
+	top: 10px;
+	list-style: none;
+	padding: 20px auto;
+}
+
+.menu-footer li {
+	position: relative;
+	padding: 5px 0px;
+	border-right: 3px solid #d9c5b2;
+	width: 147px;
+	height: 25px;
+	text-align: center;
+}
+
+.menu-footer li:last-child {
+	border-right: none;
+	width: 150px;
+}
+
+.menu-footer a {
+	color: #d9c5b2;
+	text-decoration: none;
+}
+
+.menu-footer li:hover > a {
+	color: #f3f3f4; 
+}
+
+.social {
+	position: absolute;
+	width: 450px;
+	top: 60px;
+	left: 275px;
+	text-align: center;
+}
+
+.social a {
+	padding: 0 15px;
+}
+
+.social img {
+	width: 50px;
+	height: 50px;
+}
+
+.social h3 {
+	margin-top: 5px;
+	color: #d9c5b2;
+	font-weight: normal;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

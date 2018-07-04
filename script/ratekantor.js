@@ -3,7 +3,7 @@ var rateData = [
 	{
 	"cc": "USD",
 	"rateBay": 26.00,
-	"rateSell": 26.13},
+	"rateSell": 26.20},
 	{
 	"cc": "EUR",
 	"rateBay": 30.30,
