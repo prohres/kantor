@@ -5,7 +5,7 @@
 	<title>KANTOR | ОБМІН</title>
 	<link rel="shortcut icon" type="image/png" href="images/icon.png" >
 	<link rel="stylesheet" type="text/css" href="style/style.css"></head>
-	<link rel="stylesheet" href="style/flipclock.css">
+	<link rel="stylesheet" type="text/css" href="style/flipclock.css">
 <body>
 	<div id="wrapper">
 		<header>
@@ -74,46 +74,46 @@
 		</header>
 		<div class="anotherheader">
 			<h2 id="FOREX">FOREX</h2>
-			<h3>Bid &amp; Ask &amp; Chart</h3>
+			<h3>Bid &amp; Ask &amp; Graph</h3>
 		</div>
 		<section class="forex">
 			<table class="forex-grid">
-				<tr class="EURUSD">
+				<tr class="EURUSD" title="">
 					<td>EURUSD</td>
 					<td>
 						<img src="images/eurusd.png" alt="eurusd currency pair"></td>
 					<td id="EURUSDBID"></td>
 					<td id="EURUSDASK"></td>
 				</tr>
-				<tr class="GBPUSD">
+				<tr class="GBPUSD" title="">
 					<td>GBPUSD</td>
 					<td>
 						<img src="images/gbpusd.png" alt="gbpusd currency pair"></td>
 					<td id="GBPUSDBID"></td>
 					<td id="GBPUSDASK"></td>
 				</tr>
-				<tr class="USDRUB">
+				<tr class="USDRUB" title="">
 					<td>USDRUB</td>
 					<td>
 						<img src="images/usdrub.png" alt="usdrub currency pair"></td>
 					<td id="USDRUBBID"></td>
 					<td id="USDRUBASK"></td>
 				</tr>
-				<tr class="USDCAD">
+				<tr class="USDCAD" title="">
 					<td>USDCAD</td>
 					<td>
 						<img src="images/usdcad.png" alt="usdcad currency pair"></td>
 					<td id="USDCADBID"></td>
 					<td id="USDCADASK"></td>
 				</tr>
-				<tr class="USDPLN">
+				<tr class="USDPLN" title="">
 					<td>USDPLN</td>
 					<td>
 						<img src="images/usdpln.png" alt="usdpln currency pair"></td>
 					<td id="USDPLNBID"></td>
 					<td id="USDPLNASK"></td>
 				</tr>
-				<tr class="CHFUSD">
+				<tr class="CHFUSD" title="">
 					<td>CHFUSD</td>
 					<td>
 						<img src="images/chfusd.png" alt="chfusd currency pair"></td>
@@ -121,52 +121,63 @@
 					<td id="CHFUSDASK"></td>
 				</tr>
 			</table>
+			<div id="forex-spinner">
+  				<img src="images/ajax-loader.gif" alt="Loading" />
+			</div>
 			<div id="forex-chart"></div>
 		</section>
 		<div class="anotherheader">
 			<h2 id="NBU">NBU</h2>
-			<h3>Rate &amp; Chart</h3>
+			<h3>Rate &amp; Graph</h3>
 		</div>
 		<section class="nbu">
 			<table class="nbu-grid">
-				<tr class="USD">
+				<tr class="USD" title="">
 					<td>USD</td>
 					<td >
 						<img src="images/united-states.png" alt="united states flag"></td>
 					<td id="RATEUSD"></td>
-					<td id="EUSD"></td>
+					<td id="DATEUSD"></td>
 				</tr>
-				<tr class="EUR">
+				<tr class="EUR" title="">
 					<td>EUR</td>
 					<td >
 						<img src="images/european-union.png" alt="european union flag"></td>
 					<td id="RATEEUR"></td>
+					<td id="DATEEUR"></td>
 				</tr>
-				<tr class="GBP">
+				<tr class="GBP" title="">
 					<td>GBP</td>
 					<td>
 						<img src="images/united-kingdom.png" alt="united kingdom flag"></td>
 					<td id="RATEGBP"></td>
+					<td id="DATEGBP"></td>
 				</tr>
-				<tr class="RUB">
+				<tr class="RUB" title="">
 					<td>RUB</td>
 					<td>
 						<img src="images/russia.png" alt="russia flag"></td>
 					<td id="RATERUB"></td>
+					<td id="DATERUB"></td>
 				</tr>
-				<tr class="CAD">
+				<tr class="CAD" title="">
 					<td>CAD</td>
 					<td>
 						<img src="images/canada.png" alt="canada flag"></td>
 					<td id="RATECAD"></td>
+					<td id="DATECAD"></td>
 				</tr>
-				<tr class="PLN">
+				<tr class="PLN" title="">
 					<td>PLN</td>
 					<td>
 						<img src="images/poland.png" alt="poland flag"></td>
 					<td id="RATEPLN"></td>
+					<td id="DATEPLN"></td>
 				</tr>
 			</table>
+			<div id="nbu-spinner">
+  				<img src="images/ajax-loader.gif" alt="Loading" />
+			</div>
 			<div id="nbu-chart"></div>
 		</section>
 		<div class="anotherheader">
@@ -174,43 +185,43 @@
 			<h3>Bay &amp; Sell &amp; Converter</h3>
 		</div>
 		<section class="kantor">
-			<table class="kantor-grid">
-				<tr>
+			<table class="kantor-grid" ng-app="kantorRate">
+				<tr title="">
 					<td>USD</td>
 					<td >
 						<img src="images/united-states.png" alt="united states flag"></td>
 					<td id="USDBAY"></td>
 					<td id="USDSELL"></td>
 				</tr>
-				<tr>
+				<tr title="">
 					<td>EUR</td>
 					<td >
 						<img src="images/european-union.png" alt="european union flag"></td>
 					<td id="EURBAY"></td>
 					<td id="EURSELL"></td>
 				</tr>
-				<tr>
+				<tr title="">
 					<td>GBP</td>
 					<td>
 						<img src="images/united-kingdom.png" alt="united kingdom flag"></td>
 					<td id="GBPBAY"></td>
 					<td id="GBPSELL"></td>
 				</tr>
-				<tr>
+				<tr title="">
 					<td>RUB</td>
 					<td>
 						<img src="images/russia.png" alt="russia flag"></td>
 					<td id="RUBBAY"></td>
 					<td id="RUBSELL"></td>
 				</tr>
-				<tr>
+				<tr title="">
 					<td>CAD</td>
 					<td>
 						<img src="images/canada.png" alt="canada flag"></td>
 					<td id="CADBAY"></td>
 					<td id="CADSELL"></td>
 				</tr>
-				<tr>
+				<tr title="">
 					<td>PLN</td>
 					<td>
 						<img src="images/poland.png" alt="poland flag"></td>
@@ -219,145 +230,142 @@
 				</tr>
 			</table>
 			<!-- <table class="kantor-converter">
-			<tr>
-				<th colspan="2">Currency converter</th>
-			</tr>
-			<tr>
-				<td>
-					<label>Changes:</label>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="text" name="changes-sum" value="100"></td>
-			</tr>
-			<tr>
-				<td colspan="2">---</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<button>-----</button>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Get:</label>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="text" name="changes-sum" value="2600"></td>
-			</tr>
-		</table>
-		-->
-	</section>
-	<div class="anotherheader">
-
-		<h2 id="PLATFORMS">PLATFORMS</h2>
-		<h3>Download Kantor</h3>
-
-	</div>
-	<section class="platforms">
-		<img src="images/platforms.png" alt="apply platforms">
-		<div class="platforms-download">
+				<tr>
+					<th colspan="2">Currency converter</th>
+				</tr>
+				<tr>
+					<td>
+						<label>Changes:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" name="changes-sum" value="100"></td>
+				</tr>
+				<tr>
+					<td colspan="2">---</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button>-----</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label>Get:</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<input type="text" name="changes-sum" value="2600"></td>
+				</tr>
+			</table>-->
+		</section>
+		<div class="anotherheader">
+			<h2 id="PLATFORMS">PLATFORMS</h2>
 			<h3>Download Kantor</h3>
-			<figure>
-				<img src="images/android.png" alt="apple logo">
-				<figcaption>
-					<a href="images/kantor-logo.png" aria-label="Download for Android" download="kantor-logo.png">For your Phone</a>
-				</figcaption>
-			</figure>
-			<figure>
-				<img src="images/apple.png" alt="apple logo">
-				<figcaption>
-					<a href="images/kantor-logo.png" aria-label="Download for MAC" download="kantor-logo.png">For your MAC</a>
-				</figcaption>
-				<figcaption>
-					<a href="images/kantor-logo.png" aria-label="Download for iPad" download="kantor-logo.png">For your iPad</a>
-				</figcaption>
-				<figcaption>
-					<a href="images/kantor-logo.png" aria-label="Download for iPhone" download="kantor-logo.png">For your iPhone</a>
-				</figcaption>
-			</figure>
-			<figure>
-				<img src="images/windows.png" alt="apple logo">
-				<figcaption>
-					<a href="images/kantor-logo.png" aria-label="Download for PC" download="kantor-logo.png">For your PC</a>
-				</figcaption>
-			</figure>
 		</div>
-	</section>
-	<div class="anotherheader">
-
-		<h2 id="ABOUTUS">ABOUT US</h2>
-		<h3>More info</h3>
+		<section class="platforms">
+			<img src="images/platforms.png" alt="apply platforms">
+			<div class="platforms-download">
+				<h3>Download Kantor</h3>
+				<figure>
+					<img src="images/android.png" alt="apple logo">
+					<figcaption>
+						<a href="images/kantor-logo.png" aria-label="Download for Android" download="kantor-logo.png">For your Phone</a>
+					</figcaption>
+				</figure>
+				<figure>
+					<img src="images/apple.png" alt="apple logo">
+					<figcaption>
+						<a href="images/kantor-logo.png" aria-label="Download for MAC" download="kantor-logo.png">For your MAC</a>
+					</figcaption>
+					<figcaption>
+						<a href="images/kantor-logo.png" aria-label="Download for iPad" download="kantor-logo.png">For your iPad</a>
+					</figcaption>
+					<figcaption>
+						<a href="images/kantor-logo.png" aria-label="Download for iPhone" download="kantor-logo.png">For your iPhone</a>
+					</figcaption>
+				</figure>
+				<figure>
+					<img src="images/windows.png" alt="apple logo">
+					<figcaption>
+						<a href="images/kantor-logo.png" aria-label="Download for PC" download="kantor-logo.png">For your PC</a>
+					</figcaption>
+				</figure>
+			</div>
+		</section>
+		<div class="anotherheader">
+			<h2 id="ABOUTUS">ABOUT US</h2>
+			<h3>More info</h3>
+		</div>
+		<section class="aboutus">
+			<img class="aboutus-banking" src="images/banking-license.png" alt="banking license">
+			<div class="aboutus-address">
+				<h3>Contact us</h3>
+				<h4>Postal Address:</h4>
+				<h4>7, Nezalezhnosti St.,</h4>
+				<h4>Ivano-Frankivsk 76018</h4>
+				<h4>Telephone:</h4>
+				<h4>
+					<a href="tel:+380979999999" target="_blank" aria-label="Call us at phone">+38 097 999-99-99</a>
+				</h4>
+				<h4>
+					<a href="tel:+380509999999" target="_blank" aria-label="Call us at phone">+38 050 999-99-99</a>
+				</h4>
+				<h4>
+					Website:
+					<a href="#">kantor.if.ua</a>
+				</h4>
+				<h4>
+					E-mail:
+					<a href="mailto:kantor@gmail.com" target="_blank" aria-label="Write us an email">kantor@gmail.com</a>
+				</h4>
+			</div>
+			<img class="aboutus-map" src="images/map.png" alt="map">
+		</section>
+		<footer>
+			<ul class="footer-menu">
+				<li>
+					<a href="#FOREX" aria-label="Forex Bid &amp; Ask &amp; Chart">FOREX</a>
+				</li>
+				<li>
+					<a href="#NBU" aria-label="Nbu official exchange rate &amp; Char">NBU</a>
+				</li>
+				<li>
+					<a href="#KANTOR" aria-label="Kantor exchange rate &amp; Currency converter">KANTOR</a>
+				</li>
+				<li>
+					<a href="#PLATFORMS" aria-label="Download Kantor for your platform">PLATFORMS</a>
+				</li>
+				<li>
+					<a href="#ABOUTUS" aria-label="More info about us">ABOUT US</a>
+				</li>
+			</ul>
+			<div class="footer-social">
+				<a href="https://www.facebook.com/" target="_blank" aria-label="Our page on facebook">
+					<img src="images/facebook.png" alt="facebook logo"></a>
+				<a href="https://telegram.org/" target="_blank" aria-label="Our channel in the telegram">
+					<img src="images/telegram.png" alt="telegram logo"></a>
+				<a href="viber:+380979999999" target="_blank" aria-label="Call us at Viber">
+					<img src="images/viber.png" alt="viber logo"></a>
+				<a href="skype:kantor@gmail.com" target="_blank" aria-label="Call us at Skype">
+					<img src="images/skype.png" alt="skype logo"></a>
+				<a href="https://twitter.com/?lang=uk" target="_blank" aria-label="Our page on twitter">
+					<img src="images/twitter.png" alt="twitter logo"></a>
+				<h3>Stay connected</h3>
+			</div>
+		</footer>
 	</div>
-	<section class="aboutus">
-		<img class="aboutus-banking" src="images/banking-license.png" alt="banking license">
-		<div class="aboutus-address">
-			<h3>Contact us</h3>
-			<h4>Postal Address:</h4>
-			<h4>7, Nezalezhnosti St.,</h4>
-			<h4>Ivano-Frankivsk 76018</h4>
-			<h4>Telephone:</h4>
-			<h4>
-				<a href="tel:+380979999999" target="_blank" aria-label="Call us at phone">+38 097 999-99-99</a>
-			</h4>
-			<h4>
-				<a href="tel:+380509999999" target="_blank" aria-label="Call us at phone">+38 050 999-99-99</a>
-			</h4>
-			<h4>
-				Website:
-				<a href="#">kantor.if.ua</a>
-			</h4>
-			<h4>
-				E-mail:
-				<a href="mailto:kantor@gmail.com" target="_blank" aria-label="Write us an email">kantor@gmail.com</a>
-			</h4>
-		</div>
-		<img class="aboutus-map" src="images/map.png" alt="map"></section>
-	<footer>
-		<ul class="footer-menu">
-			<li>
-				<a href="#FOREX" aria-label="Forex Bid &amp; Ask &amp; Chart">FOREX</a>
-			</li>
-			<li>
-				<a href="#NBU" aria-label="Nbu official exchange rate &amp; Char">NBU</a>
-			</li>
-			<li>
-				<a href="#KANTOR" aria-label="Kantor exchange rate &amp; Currency converter">KANTOR</a>
-			</li>
-			<li>
-				<a href="#PLATFORMS" aria-label="Download Kantor for your platform">PLATFORMS</a>
-			</li>
-			<li>
-				<a href="#ABOUTUS" aria-label="More info about us">ABOUT US</a>
-			</li>
-		</ul>
-		<div class="footer-social">
-			<a href="https://www.facebook.com/" target="_blank" aria-label="Our page on facebook">
-				<img src="images/facebook.png" alt="facebook logo"></a>
-			<a href="https://telegram.org/" target="_blank" aria-label="Our channel in the telegram">
-				<img src="images/telegram.png" alt="telegram logo"></a>
-			<a href="viber:+380979999999" target="_blank" aria-label="Call us at Viber">
-				<img src="images/viber.png" alt="viber logo"></a>
-			<a href="skype:kantor@gmail.com" target="_blank" aria-label="Call us at Skype">
-				<img src="images/skype.png" alt="skype logo"></a>
-			<a href="https://twitter.com/?lang=uk" target="_blank" aria-label="Our page on twitter">
-				<img src="images/twitter.png" alt="twitter logo"></a>
-			<h3>Stay connected</h3>
-		</div>
-	</footer>
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="script/flipclock.min.js"></script>
-<script type="text/javascript" src="script/datetime.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="script/request-quotes-rate.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script type="text/javascript" src="script/chart.js"></script>
-
-
+	<script type="text/javascript" src="script/flipclock.min.js"></script>
+	<script type="text/javascript" src="script/datetime.js"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="script/request-quotes-rate.js"></script>
+	
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script type="text/javascript" src="script/chart.js"></script>
 </body>
 </html>

@@ -17,22 +17,21 @@ fetch('https://allow-any-origin.appspot.com/https://bank.gov.ua/NBUStatService/v
 		for (var j = 0; j < currencyCode.length; j++) {
 			if (json[i].cc == currencyCode[j]) {
 				document.getElementById('RATE' + currencyCode[j]).innerHTML = json[i].rate.toFixed(3);
+				document.getElementById('DATE' + currencyCode[j]).innerHTML = json[i].exchangedate;
 			}		
 		}
 	}
 });
 
-
-
 var rateData = [
 	{
 	"cc": "USD",
-	"rateBay": 26.00,
-	"rateSell": 26.20},
+	"rateBay": 28.00,
+	"rateSell": 28.20},
 	{
 	"cc": "EUR",
-	"rateBay": 30.30,
-	"rateSell": 30.48},
+	"rateBay": 32.35,
+	"rateSell": 32.60},
 	{
 	"cc": "GBP",
 	"rateBay": 34.00,

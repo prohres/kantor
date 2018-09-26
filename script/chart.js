@@ -1,8 +1,13 @@
 
+var forexChart = document.getElementById('forex-chart');
+var forexSpiner = document.getElementById('forex-spinner');
+
 var currencyPair = 'EURUSD';
 buildGraphForex(currencyPair);
 
 $('.forex-grid tr').click(function() {
+	forexChart.style.display = "none";
+	forexSpiner.style.display = "block";
 	buildGraphForex($(this).attr('class'));
 });
 
@@ -17,15 +22,26 @@ function buildGraphForex (currencyPair) {
 			.then(response => response.json())
 			.then(json => {
 				objDateRateForex[Object.keys(json[`${currencyPair}`])[0].split('-').join('')] = parseFloat(Object.values(json[`${currencyPair}`])[0].toFixed(5));
-				var plotChartForex = addChart (container, currencyPair.split('_').join(''), objDateRateForex);
+				if (Object.keys(objDateRateForex).length === 30) {
+					forexSpiner.style.display = "none";
+					forexChart.style.display = "block";
+					var plotChartForex = addChart (container, currencyPair.split('_').join(''), objDateRateForex);
+				}
 			}
 		);
 	}
+	
 }
+
+var nbuChart = document.getElementById('nbu-chart');
+var nbuSpiner = document.getElementById('nbu-spinner');
 
 var currencyCode = 'USD';
 buildGraphNbu(currencyCode);
+
 $('.nbu-grid tr').click(function() {
+	nbuChart.style.display = "none";
+	nbuSpiner.style.display = "block";
 	buildGraphNbu($(this).attr('class'));
 });
 
@@ -39,7 +55,11 @@ function buildGraphNbu (currencyCode) {
 			.then(response => response.json())
 			.then(json => {
 				objDateRateNbu[Object.values(json[0])[4].split('.').reverse().join('')] = parseFloat(Object.values(json[0])[2].toFixed(3));
-				var plotChartNbu = addChart (container, currencyCode, objDateRateNbu);
+				if (Object.keys(objDateRateNbu).length === 30) {
+					nbuSpiner.style.display = "none";
+					nbuChart.style.display = "block";
+					var plotChartNbu = addChart (container, currencyCode, objDateRateNbu);
+				}
 			}
 		);
 	}
@@ -121,189 +141,189 @@ function addChart (container, name, objDateRate) {
  */
 
 Highcharts.theme = {
-    colors: ['#d9c5b2'],
-    chart: {
-        backgroundColor: {
-            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-            stops: [
-                [0, '#f3f3f4'],
-                [1, '#f3f3f4']
-            ]
-        },
-        style: {
-            fontFamily: '\'Maven Pro\', sans-serif'
-        },
-        plotBorderColor: '#34312d'
-    },
-    xAxis: {
-        gridLineColor: '#f3f3f4',
-        labels: {
-            style: {
-                color: '#34312d',
-                fontSize: '20px'
-            }
-        },
-        lineColor: '#f3f3f4',
-        minorGridLineColor: '#f3f3f4',
-        tickColor: '#f3f3f4',
-        title: {
-            style: {
-                color: '#34312d'
-            }
-        }
-    },
-    yAxis: {
-        gridLineColor: '#f3f3f4',
-        labels: {
-            style: {
-                color: '#34312d',
-                fontSize: '20px'
-            }
-        },
-        lineColor: '#f3f3f4',
-        minorGridLineColor: '#f3f3f4',
-        tickColor: '#f3f3f4',
-        tickWidth: 5,
-        title: {
-            style: {
-                color: '#34312d'
-            }
-        }
-    },
-    tooltip: {
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        style: {
-            color: '#f3f3f4'
-        }
-    },
-    plotOptions: {
-        series: {
-            dataLabels: {
-                color: '#34312d'
-            },
-            marker: {
-                lineColor: '#34312d'
-            }
-        },
-        boxplot: {
-            fillColor: '#d9c5b2'
-        },
-        candlestick: {
-            lineColor: '#f3f3f4'
-        },
-        errorbar: {
-            color: '#f3f3f4'
-        }
-    },
-    legend: {
-        itemStyle: {
-            color: '#f3f3f4'
-        },
-        itemHoverStyle: {
-            color: '#ffffff'
-        },
-        itemHiddenStyle: {
-            color: '#7e7f83'
-        }
-    },
-    credits: {
-        style: {
-            color: '#7e7f83'
-        }
-    },
-    labels: {
-        style: {
-            color: '#7e7f83'
-        }
-    },
+	colors: ['#d9c5b2'],
+	chart: {
+		backgroundColor: {
+			linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+			stops: [
+				[0, '#f3f3f4'],
+				[1, '#f3f3f4']
+			]
+		},
+		style: {
+			fontFamily: '\'Maven Pro\', sans-serif'
+		},
+		plotBorderColor: '#34312d'
+	},
+	xAxis: {
+		gridLineColor: '#f3f3f4',
+		labels: {
+			style: {
+				color: '#34312d',
+				fontSize: '20px'
+			}
+		},
+		lineColor: '#f3f3f4',
+		minorGridLineColor: '#f3f3f4',
+		tickColor: '#f3f3f4',
+		title: {
+			style: {
+				color: '#34312d'
+			}
+		}
+	},
+	yAxis: {
+		gridLineColor: '#f3f3f4',
+		labels: {
+			style: {
+				color: '#34312d',
+				fontSize: '20px'
+			}
+		},
+		lineColor: '#f3f3f4',
+		minorGridLineColor: '#f3f3f4',
+		tickColor: '#f3f3f4',
+		tickWidth: 5,
+		title: {
+			style: {
+				color: '#34312d'
+			}
+		}
+	},
+	tooltip: {
+		backgroundColor: 'rgba(0, 0, 0, 0.85)',
+		style: {
+			color: '#f3f3f4'
+		}
+	},
+	plotOptions: {
+		series: {
+			dataLabels: {
+				color: '#34312d'
+			},
+			marker: {
+				lineColor: '#34312d'
+			}
+		},
+		boxplot: {
+			fillColor: '#d9c5b2'
+		},
+		candlestick: {
+			lineColor: '#f3f3f4'
+		},
+		errorbar: {
+			color: '#f3f3f4'
+		}
+	},
+	legend: {
+		itemStyle: {
+			color: '#f3f3f4'
+		},
+		itemHoverStyle: {
+			color: '#ffffff'
+		},
+		itemHiddenStyle: {
+			color: '#7e7f83'
+		}
+	},
+	credits: {
+		style: {
+			color: '#7e7f83'
+		}
+	},
+	labels: {
+		style: {
+			color: '#7e7f83'
+		}
+	},
 
-    drilldown: {
-        activeAxisLabelStyle: {
-            color: '#f3f3f4'
-        },
-        activeDataLabelStyle: {
-            color: '#f3f3f4'
-        }
-    },
+	drilldown: {
+		activeAxisLabelStyle: {
+			color: '#f3f3f4'
+		},
+		activeDataLabelStyle: {
+			color: '#f3f3f4'
+		}
+	},
 
-    navigation: {
-        buttonOptions: {
-            symbolStroke: '#f3f3f4',
-            theme: {
-                fill: '#7e7f83'
-            }
-        }
-    },
+	navigation: {
+		buttonOptions: {
+			symbolStroke: '#f3f3f4',
+			theme: {
+				fill: '#7e7f83'
+			}
+		}
+	},
 
-    // scroll charts
-    rangeSelector: {
-        buttonTheme: {
-            fill: '#7e7f83',
-            stroke: '#14110f',
-            style: {
-                color: '#7e7f83'
-            },
-            states: {
-                hover: {
-                    fill: '#7e7f83',
-                    stroke: '#14110f',
-                    style: {
-                        color: '#f3f3f4'
-                    }
-                },
-                select: {
-                    fill: '#14110f',
-                    stroke: '#14110f',
-                    style: {
-                        color: '#f3f3f4'
-                    }
-                }
-            }
-        },
-        inputBoxBorderColor: '#7e7f83',
-        inputStyle: {
-            backgroundColor: '#34312d',
-            color: '#7e7f83'
-        },
-        labelStyle: {
-            color: '#7e7f83'
-        }
-    },
+	// scroll charts
+	rangeSelector: {
+		buttonTheme: {
+			fill: '#7e7f83',
+			stroke: '#14110f',
+			style: {
+				color: '#7e7f83'
+			},
+			states: {
+				hover: {
+					fill: '#7e7f83',
+					stroke: '#14110f',
+					style: {
+						color: '#f3f3f4'
+					}
+				},
+				select: {
+					fill: '#14110f',
+					stroke: '#14110f',
+					style: {
+						color: '#f3f3f4'
+					}
+				}
+			}
+		},
+		inputBoxBorderColor: '#7e7f83',
+		inputStyle: {
+			backgroundColor: '#34312d',
+			color: '#7e7f83'
+		},
+		labelStyle: {
+			color: '#7e7f83'
+		}
+	},
 
-    navigator: {
-        handles: {
-            backgroundColor: '#7e7f83',
-            borderColor: '#f3f3f4'
-        },
-        outlineColor: '#7e7f83',
-        maskFill: '#ffffff',
-        series: {
-            color: '#7e7f83',
-            lineColor: '#f3f3f4'
-        },
-        xAxis: {
-            gridLineColor: '#7e7f83'
-        }
-    },
+	navigator: {
+		handles: {
+			backgroundColor: '#7e7f83',
+			borderColor: '#f3f3f4'
+		},
+		outlineColor: '#7e7f83',
+		maskFill: '#ffffff',
+		series: {
+			color: '#7e7f83',
+			lineColor: '#f3f3f4'
+		},
+		xAxis: {
+			gridLineColor: '#7e7f83'
+		}
+	},
 
-    scrollbar: {
-        barBackgroundColor: '#7e7f83',
-        barBorderColor: '#7e7f83',
-        buttonArrowColor: '#f3f3f4',
-        buttonBackgroundColor: '#7e7f83',
-        buttonBorderColor: '#7e7f83',
-        rifleColor: '#ffffff',
-        trackBackgroundColor: '#34312d',
-        trackBorderColor: '#34312d'
-    },
+	scrollbar: {
+		barBackgroundColor: '#7e7f83',
+		barBorderColor: '#7e7f83',
+		buttonArrowColor: '#f3f3f4',
+		buttonBackgroundColor: '#7e7f83',
+		buttonBorderColor: '#7e7f83',
+		rifleColor: '#ffffff',
+		trackBackgroundColor: '#34312d',
+		trackBorderColor: '#34312d'
+	},
 
-    // special colors for some of the
-    legendBackgroundColor: '#14110f',
-    background2: '#7e7f83',
-    dataLabelsColor: '#f3f3f4',
-    textColor: '#7e7f83',
-    contrastTextColor: '#f3f3f4',
-    maskColor: '#ffffff'
+	// special colors for some of the
+	legendBackgroundColor: '#14110f',
+	background2: '#7e7f83',
+	dataLabelsColor: '#f3f3f4',
+	textColor: '#7e7f83',
+	contrastTextColor: '#f3f3f4',
+	maskColor: '#ffffff'
 };
 
 // Apply the theme
