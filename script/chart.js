@@ -17,7 +17,7 @@ function buildGraphForex (currencyPair) {
 	var objDateRateForex = {};
 	for (var i = 1; i < 31; i++) {
 		var yyyymmdd = countDays(i);
-		var forexUri = `https://allow-any-origin.appspot.com/https://free.currencyconverterapi.com/api/v6/convert?q=${currencyPair}&compact=ultra&date=${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}`;
+		var forexUri = `https://allow-any-origin.appspot.com/https://free.currencyconverterapi.com/api/v6/convert?apiKey=0e4d490ec8d4ffcf74ee&q=${currencyPair}&compact=ultra&date=${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}`;
 		fetch(forexUri)
 			.then(response => response.json())
 			.then(json => {
@@ -30,7 +30,6 @@ function buildGraphForex (currencyPair) {
 			}
 		);
 	}
-	
 }
 
 var nbuChart = document.getElementById('nbu-chart');
