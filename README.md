@@ -1,2 +1,2 @@
-# solovii.dithub.io
+# kantor.dithub.io
 JS lerning
