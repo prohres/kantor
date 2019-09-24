@@ -1,2 +1,2 @@
-# kantor.dithub.io
-JS lerning
+# kantor.com.ua
+Learn how to create a site
