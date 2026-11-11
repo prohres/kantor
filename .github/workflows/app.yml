@@ -27,7 +27,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: prohres/ci-templates/.github/workflows/container-build.yml@feat/app-pipeline # canary; @v1 after release
+    uses: prohres/ci-templates/.github/workflows/container-build.yml@v1
     with:
       image-name: kantor
       push: ${{ github.event_name != 'pull_request' }}
@@ -41,7 +41,7 @@ jobs:
       || (needs.build.result == 'skipped' && startsWith(inputs.image-ref, '686337362279.dkr.ecr.eu-central-1.amazonaws.com/kantor@sha256:')))
     permissions:
       id-token: write
-    uses: prohres/ci-templates/.github/workflows/deploy-ecs.yml@feat/app-pipeline
+    uses: prohres/ci-templates/.github/workflows/deploy-ecs.yml@v1
     with:
       environment: dev
       image-ref: ${{ inputs.image-ref || needs.build.outputs.image-ref }}
@@ -60,7 +60,7 @@ jobs:
     if: inputs.image-ref == '' # a rollback in dev promotes nothing
     permissions:
       id-token: write
-    uses: prohres/ci-templates/.github/workflows/promote-ecr.yml@feat/app-pipeline
+    uses: prohres/ci-templates/.github/workflows/promote-ecr.yml@v1
     with:
       environment: prod
       image-ref: ${{ needs.build.outputs.image-ref }}
