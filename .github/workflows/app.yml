@@ -1,7 +1,7 @@
 name: app
 
 # PR: lint, build and scan (no AWS access). Push to develop: build once -> deploy the digest to dev
-# -> approval in the prod environment -> tag the same digest prod-<sha>.
+# -> smoke test on the service's load balancer (its URL is looked up, the stack is re-created daily).
 # Manual run on develop: the same pipeline, or with image-ref only a dev deploy of that digest (rollback).
 on:
   pull_request:
@@ -54,17 +54,5 @@ jobs:
       service: kantor
       task-family: kantor-dev
       container-name: web
-      smoke-url: ${{ vars.DEV_URL }}/version.json
+      smoke-path: /version.json
       smoke-expect: ${{ inputs.image-ref == '' && github.sha || '' }} # a rollback runs an older commit
-
-  promote-prod:
-    needs: [build, deploy-dev]
-    if: inputs.image-ref == '' # a rollback in dev promotes nothing
-    permissions:
-      id-token: write
-    uses: prohres/ci-templates/.github/workflows/promote-ecr.yml@v1
-    with:
-      environment: prod
-      image-ref: ${{ needs.build.outputs.image-ref }}
-      tag: prod-${{ github.sha }}
-      gha-role-arn: arn:aws:iam::${{ vars.CI_ACCOUNT_ID }}:role/gha-app-promote
