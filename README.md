@@ -16,8 +16,9 @@ infrastructure lives in [itca-kantor](https://github.com/prohres/itca-kantor).
 | pull request to `develop` | hadolint · gitleaks · docker build · trivy scan (no AWS access) |
 | push to `develop` | build once → push `kantor:<sha>` to ECR → deploy the digest to dev (ECS) → smoke test `/version.json` → approval in `prod` → tag the same digest `prod-<sha>` |
 
-Rollback: run the deploy again with an earlier digest; a deploy that never gets healthy is rolled back by
-ECS (circuit breaker) and the job fails.
+Rollback: Actions → app → Run workflow on `develop` with `image-ref` = an earlier digest (deploys it to dev,
+no build, no promote). A deploy that never gets healthy is rolled back by ECS (circuit breaker) and the job fails.
+Run workflow with an empty `image-ref` repeats the whole pipeline for the current commit (the image is reused).
 
 ## Run locally
 
