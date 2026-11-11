@@ -1,6 +1,6 @@
 # kantor
 
-Demo currency exchange site (static HTML / JS), shipped as a container: nginx as a non-root user,
+Currency exchange site (static HTML / JS), shipped as a container: nginx as a non-root user,
 `/health` for the load balancer, `/version.json` with the commit SHA.
 
 Rates come from keyless open sources: [Frankfurter](https://frankfurter.dev) (ECB reference rates) and
@@ -11,7 +11,7 @@ The FOREX and NBU tables show the change over the last 30 days instead of a date
 ## Pipeline
 
 `.github/workflows/app.yml` uses reusable workflows from [ci-templates](https://github.com/prohres/ci-templates);
-infrastructure lives in [itca-kantor](https://github.com/prohres/itca-kantor).
+infrastructure lives in [kantor-infra](https://github.com/prohres/kantor-infra).
 
 | Event | What runs |
 |---|---|
