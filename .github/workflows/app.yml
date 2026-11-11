@@ -21,6 +21,7 @@ concurrency:
   group: app-${{ github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }} # a new PR commit supersedes; never cut a deploy
 
+# Account ids and the dev URL are repo variables (Settings → Variables), not code: the repo is public.
 jobs:
   build:
     if: inputs.image-ref == ''
@@ -31,28 +32,29 @@ jobs:
     with:
       image-name: kantor
       push: ${{ github.event_name != 'pull_request' }}
-      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-build
+      gha-role-arn: arn:aws:iam::${{ vars.CI_ACCOUNT_ID }}:role/gha-app-build
 
   deploy-dev:
     needs: build
     # Build skipped only for a rollback; the digest must come from our registry
     if: >-
       always() && github.event_name != 'pull_request' && (needs.build.result == 'success'
-      || (needs.build.result == 'skipped' && startsWith(inputs.image-ref, '686337362279.dkr.ecr.eu-central-1.amazonaws.com/kantor@sha256:')))
+      || (needs.build.result == 'skipped'
+      && startsWith(inputs.image-ref, format('{0}.dkr.ecr.eu-central-1.amazonaws.com/kantor@sha256:', vars.CI_ACCOUNT_ID))))
     permissions:
       id-token: write
     uses: prohres/ci-templates/.github/workflows/deploy-ecs.yml@v1
     with:
       environment: dev
       image-ref: ${{ inputs.image-ref || needs.build.outputs.image-ref }}
-      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-deploy-dev
-      target-role-arn: arn:aws:iam::699353518928:role/app-deploy
-      target-account-id: "699353518928"
+      gha-role-arn: arn:aws:iam::${{ vars.CI_ACCOUNT_ID }}:role/gha-app-deploy-dev
+      target-role-arn: arn:aws:iam::${{ vars.DEV_ACCOUNT_ID }}:role/app-deploy
+      target-account-id: ${{ vars.DEV_ACCOUNT_ID }}
       cluster: kantor-dev
       service: kantor
       task-family: kantor-dev
       container-name: web
-      smoke-url: http://kantor-dev-1147219368.eu-central-1.elb.amazonaws.com/version.json
+      smoke-url: ${{ vars.DEV_URL }}/version.json
       smoke-expect: ${{ inputs.image-ref == '' && github.sha || '' }} # a rollback runs an older commit
 
   promote-prod:
@@ -65,4 +67,4 @@ jobs:
       environment: prod
       image-ref: ${{ needs.build.outputs.image-ref }}
       tag: prod-${{ github.sha }}
-      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-promote
+      gha-role-arn: arn:aws:iam::${{ vars.CI_ACCOUNT_ID }}:role/gha-app-promote
