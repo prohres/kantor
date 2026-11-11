@@ -4,7 +4,9 @@ Demo currency exchange site (static HTML / JS), shipped as a container: nginx as
 `/health` for the load balancer, `/version.json` with the commit SHA.
 
 Rates come from keyless open sources: [Frankfurter](https://frankfurter.dev) (ECB reference rates) and
-the [NBU](https://bank.gov.ua/ua/open-data/api-dev) official rates. Kantor buy / sell prices are static demo values.
+the [NBU](https://bank.gov.ua/ua/open-data/api-dev) official rates. Kantor buy / sell prices are derived from the NBU rate with a per-day spread (buy ×0.90–0.99,
+sell ×1.01–1.10) that is pseudo-random but seeded by date and currency, so a day always shows the same prices.
+The FOREX and NBU tables show the change over the last 30 days instead of a date.
 
 ## Pipeline
 

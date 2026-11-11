@@ -1,331 +1,60 @@
-
-var forexChart = document.getElementById('forex-chart');
-var forexSpiner = document.getElementById('forex-spinner');
-
-var currencyPair = 'EURUSD';
-buildGraphForex(currencyPair);
-
-$('.forex-grid tr').click(function() {
-	forexChart.style.display = "none";
-	forexSpiner.style.display = "block";
-	buildGraphForex($(this).attr('class'));
-});
-
-function buildGraphForex (currencyPair) {
-	var container = 'forex-chart';
-	var base = currencyPair.slice(0, 3);
-	var quote = currencyPair.slice(3, 6);
-	var end = countDays(1);
-	var start = countDays(30);
-	// One request for the whole range; ECB publishes no rates on weekends and holidays
-	var forexUri = `https://api.frankfurter.dev/v1/${toIso(start)}..${toIso(end)}?base=${base}&symbols=${quote}`;
-	fetch(forexUri)
-		.then(response => response.json())
-		.then(json => {
-			var objDateRateForex = {};
-			for (var date in json.rates) {
-				objDateRateForex[date.split('-').join('')] = parseFloat(json.rates[date][quote].toFixed(5));
-			}
-			forexSpiner.style.display = "none";
-			forexChart.style.display = "block";
-			addChart(container, currencyPair, objDateRateForex);
-		});
-}
-
-var nbuChart = document.getElementById('nbu-chart');
-var nbuSpiner = document.getElementById('nbu-spinner');
-
-var currencyCode = 'USD';
-buildGraphNbu(currencyCode);
-
-$('.nbu-grid tr').click(function() {
-	nbuChart.style.display = "none";
-	nbuSpiner.style.display = "block";
-	buildGraphNbu($(this).attr('class'));
-});
-
-function buildGraphNbu (currencyCode) {
-	var container = 'nbu-chart';
-	var requests = [];
-	for (var i = 1; i < 31; i++) {
-		var nbuUri = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyCode}&date=${countDays(i)}&json`;
-		requests.push(fetch(nbuUri).then(response => response.json()).catch(() => []));
-	}
-	// A failed day leaves a gap in the chart instead of blocking it
-	Promise.all(requests).then(days => {
-		var objDateRateNbu = {};
-		days.filter(json => json.length).forEach(json => {
-			objDateRateNbu[json[0].exchangedate.split('.').reverse().join('')] = parseFloat(json[0].rate.toFixed(3));
-		});
-		nbuSpiner.style.display = "none";
-		nbuChart.style.display = "block";
-		addChart(container, currencyCode, objDateRateNbu);
-	});
-}
-
-function countDays (i) {
-	var nowDate = new Date();
-	nowDate.setDate(nowDate.getDate() + (-i));
-	var year = nowDate.getFullYear().toString();
-	var month = (nowDate.getMonth() + 1).toString();
-	var day = nowDate.getDate().toString();
-	(month.length < 2) ? month = "0" + month : month;
-	(day.length < 2) ? day = "0" + day : day;
-	return `${year + month + day}`;
-}
-
-function toIso (yyyymmdd) {
-	return `${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}`;
-}
-
-function addChart (container, name, objDateRate) {
-	Highcharts.chart( container, {
-		chart: {
-			ignoreHiddenSeries: true,
-			height: 341,
-			zoomType: 'x',
-			margin: [0, 0, 50, 0]
-		},
-		title: false,
-		subtitle: false,
-		xAxis: {
-			type: 'datetime',
-			tickPixelInterval: 110
-		},
-		yAxis: {
-			title: false
-		},
-		legend: false,
-		plotOptions: {
-			area: {
-				fillColor: {
-					linearGradient: {
-						x1: 0,
-						y1: 0,
-						x2: 0,
-						y2: 1
-					},
-					stops: [
-						[0, Highcharts.getOptions().colors[0]],
-						[1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-						]
-					},
-					marker: {
-						radius: 3,
-					},
-					lineWidth: 3,
-						states: {
-							hover: {
-								lineWidth: 3
-							}
-						},
-				threshold: null
-			}
-		},
-		series: [{
-			type: 'area',
-			name: name,
-			shadow: true,
-			// [timestamp, rate] pairs: days without a rate (weekends, failed requests) stay as gaps
-			data: Object.keys(objDateRate).map(d => [Date.UTC(d.slice(0, 4), parseInt(d.slice(4, 6)) - 1, d.slice(6, 8)), objDateRate[d]])
-		}]
-	});
-}
-
-/**
- * (c) 2010-2017 Torstein Honsi
- *
- * License: www.highcharts.com/license
- *
- * Dark theme for Highcharts JS
- * @author Torstein Honsi
- */
-
-Highcharts.theme = {
-	colors: ['#d9c5b2'],
+// Highcharts theme (site palette) and two chart helpers used by rates.js
+Highcharts.setOptions({
+	colors: ['#b89c80', '#7e7f83'],
 	chart: {
-		backgroundColor: {
-			linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-			stops: [
-				[0, '#f3f3f4'],
-				[1, '#f3f3f4']
-			]
-		},
-		style: {
-			fontFamily: '\'Maven Pro\', sans-serif'
-		},
-		plotBorderColor: '#34312d'
+		backgroundColor: 'transparent',
+		style: { fontFamily: 'inherit' },
+		zooming: { type: 'x' }
 	},
+	title: { text: null },
+	credits: { enabled: false },
+	legend: { enabled: false },
 	xAxis: {
-		gridLineColor: '#f3f3f4',
-		labels: {
-			style: {
-				color: '#34312d',
-				fontSize: '20px'
-			}
-		},
-		lineColor: '#f3f3f4',
-		minorGridLineColor: '#f3f3f4',
-		tickColor: '#f3f3f4',
-		title: {
-			style: {
-				color: '#34312d'
-			}
-		}
+		type: 'datetime',
+		tickPixelInterval: 110,
+		lineColor: '#d8d8da',
+		tickColor: '#d8d8da',
+		labels: { style: { color: '#55524d', fontSize: '13px' } }
 	},
 	yAxis: {
-		gridLineColor: '#f3f3f4',
-		labels: {
-			style: {
-				color: '#34312d',
-				fontSize: '20px'
-			}
-		},
-		lineColor: '#f3f3f4',
-		minorGridLineColor: '#f3f3f4',
-		tickColor: '#f3f3f4',
-		tickWidth: 5,
-		title: {
-			style: {
-				color: '#34312d'
-			}
-		}
+		title: { text: null },
+		gridLineColor: '#ececee',
+		labels: { style: { color: '#55524d', fontSize: '13px' } }
 	},
 	tooltip: {
-		backgroundColor: 'rgba(0, 0, 0, 0.85)',
-		style: {
-			color: '#f3f3f4'
-		}
-	},
-	plotOptions: {
-		series: {
-			dataLabels: {
-				color: '#34312d'
-			},
-			marker: {
-				lineColor: '#34312d'
-			}
-		},
-		boxplot: {
-			fillColor: '#d9c5b2'
-		},
-		candlestick: {
-			lineColor: '#f3f3f4'
-		},
-		errorbar: {
-			color: '#f3f3f4'
-		}
-	},
-	legend: {
-		itemStyle: {
-			color: '#f3f3f4'
-		},
-		itemHoverStyle: {
-			color: '#ffffff'
-		},
-		itemHiddenStyle: {
-			color: '#7e7f83'
-		}
-	},
-	credits: {
-		style: {
-			color: '#7e7f83'
-		}
-	},
-	labels: {
-		style: {
-			color: '#7e7f83'
-		}
-	},
+		backgroundColor: 'rgba(52, 49, 45, 0.9)',
+		borderWidth: 0,
+		style: { color: '#f3f3f4' },
+		xDateFormat: '%a, %e %b %Y'
+	}
+});
 
-	drilldown: {
-		activeAxisLabelStyle: {
-			color: '#f3f3f4'
-		},
-		activeDataLabelStyle: {
-			color: '#f3f3f4'
-		}
-	},
-
-	navigation: {
-		buttonOptions: {
-			symbolStroke: '#f3f3f4',
-			theme: {
-				fill: '#7e7f83'
-			}
-		}
-	},
-
-	// scroll charts
-	rangeSelector: {
-		buttonTheme: {
-			fill: '#7e7f83',
-			stroke: '#14110f',
-			style: {
-				color: '#7e7f83'
-			},
-			states: {
-				hover: {
-					fill: '#7e7f83',
-					stroke: '#14110f',
-					style: {
-						color: '#f3f3f4'
-					}
-				},
-				select: {
-					fill: '#14110f',
-					stroke: '#14110f',
-					style: {
-						color: '#f3f3f4'
-					}
+// One series as a gradient area (FOREX, NBU)
+function drawArea(container, name, points, decimals) {
+	var color = Highcharts.getOptions().colors[0];
+	Highcharts.chart(container, {
+		plotOptions: {
+			area: {
+				threshold: null,
+				lineWidth: 2.5,
+				marker: { radius: 2.5 },
+				fillColor: {
+					linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+					stops: [[0, Highcharts.color(color).setOpacity(0.55).get('rgba')], [1, Highcharts.color(color).setOpacity(0).get('rgba')]]
 				}
 			}
 		},
-		inputBoxBorderColor: '#7e7f83',
-		inputStyle: {
-			backgroundColor: '#34312d',
-			color: '#7e7f83'
-		},
-		labelStyle: {
-			color: '#7e7f83'
-		}
-	},
+		tooltip: { valueDecimals: decimals },
+		series: [{ type: 'area', name: name, data: points }]
+	});
+}
 
-	navigator: {
-		handles: {
-			backgroundColor: '#7e7f83',
-			borderColor: '#f3f3f4'
-		},
-		outlineColor: '#7e7f83',
-		maskFill: '#ffffff',
-		series: {
-			color: '#7e7f83',
-			lineColor: '#f3f3f4'
-		},
-		xAxis: {
-			gridLineColor: '#7e7f83'
-		}
-	},
-
-	scrollbar: {
-		barBackgroundColor: '#7e7f83',
-		barBorderColor: '#7e7f83',
-		buttonArrowColor: '#f3f3f4',
-		buttonBackgroundColor: '#7e7f83',
-		buttonBorderColor: '#7e7f83',
-		rifleColor: '#ffffff',
-		trackBackgroundColor: '#34312d',
-		trackBorderColor: '#34312d'
-	},
-
-	// special colors for some of the
-	legendBackgroundColor: '#14110f',
-	background2: '#7e7f83',
-	dataLabelsColor: '#f3f3f4',
-	textColor: '#7e7f83',
-	contrastTextColor: '#f3f3f4',
-	maskColor: '#ffffff'
-};
-
-// Apply the theme
-Highcharts.setOptions(Highcharts.theme);
+// Several line series with a legend (KANTOR buy / sell)
+function drawLines(container, series, decimals) {
+	Highcharts.chart(container, {
+		legend: { enabled: true, itemStyle: { color: '#34312d', fontWeight: 'normal' } },
+		plotOptions: { line: { lineWidth: 2.5, marker: { radius: 2.5 } } },
+		tooltip: { shared: true, valueDecimals: decimals },
+		series: series.map(function (s) { return { type: 'line', name: s.name, data: s.points }; })
+	});
+}
