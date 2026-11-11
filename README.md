@@ -18,11 +18,15 @@ infrastructure lives in [kantor-infra](https://github.com/prohres/kantor-infra).
 | Event | What runs |
 |---|---|
 | pull request to `develop` | hadolint · gitleaks · docker build · trivy scan (no AWS access) |
-| push to `develop` | build once → push `kantor:<sha>` to ECR → deploy the digest to dev (ECS) → smoke test `/version.json` on the service's load balancer |
+| push to `develop` | build once → push `kantor:<sha>` to ECR in sketch-dev → deploy the digest to dev (ECS) → smoke test `/version.json` on the service's load balancer |
 
 Rollback: Actions → app → Run workflow on `develop` with `image-ref` = an earlier digest (deploys it to dev,
 no build). A deploy that never gets healthy is rolled back by ECS (circuit breaker) and the job fails.
 Run workflow with an empty `image-ref` repeats the whole pipeline for the current commit (the image is reused).
+
+The registry is part of the dev stack ([kantor-infra](https://github.com/prohres/kantor-infra)): after an up it
+is empty, so Run workflow with an empty `image-ref` builds and deploys again; while the stack is down a build
+fails with "is the infrastructure up?".
 
 ## Run locally
 
