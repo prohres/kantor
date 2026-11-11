@@ -18,10 +18,10 @@ infrastructure lives in [kantor-infra](https://github.com/prohres/kantor-infra).
 | Event | What runs |
 |---|---|
 | pull request to `develop` | hadolint · gitleaks · docker build · trivy scan (no AWS access) |
-| push to `develop` | build once → push `kantor:<sha>` to ECR → deploy the digest to dev (ECS) → smoke test `/version.json` → approval in `prod` → tag the same digest `prod-<sha>` |
+| push to `develop` | build once → push `kantor:<sha>` to ECR → deploy the digest to dev (ECS) → smoke test `/version.json` on the service's load balancer |
 
 Rollback: Actions → app → Run workflow on `develop` with `image-ref` = an earlier digest (deploys it to dev,
-no build, no promote). A deploy that never gets healthy is rolled back by ECS (circuit breaker) and the job fails.
+no build). A deploy that never gets healthy is rolled back by ECS (circuit breaker) and the job fails.
 Run workflow with an empty `image-ref` repeats the whole pipeline for the current commit (the image is reused).
 
 ## Run locally
