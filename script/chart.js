@@ -13,23 +13,23 @@ $('.forex-grid tr').click(function() {
 
 function buildGraphForex (currencyPair) {
 	var container = 'forex-chart';
-	currencyPair = `${currencyPair.slice(0, 3)}_${currencyPair.slice(3, 6)}`;
-	var objDateRateForex = {};
-	for (var i = 1; i < 31; i++) {
-		var yyyymmdd = countDays(i);
-		var forexUri = `https://allow-any-origin.appspot.com/https://free.currencyconverterapi.com/api/v6/convert?apiKey=0e4d490ec8d4ffcf74ee&q=${currencyPair}&compact=ultra&date=${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}`;
-		fetch(forexUri)
-			.then(response => response.json())
-			.then(json => {
-				objDateRateForex[Object.keys(json[`${currencyPair}`])[0].split('-').join('')] = parseFloat(Object.values(json[`${currencyPair}`])[0].toFixed(5));
-				if (Object.keys(objDateRateForex).length === 30) {
-					forexSpiner.style.display = "none";
-					forexChart.style.display = "block";
-					var plotChartForex = addChart (container, currencyPair.split('_').join(''), objDateRateForex);
-				}
+	var base = currencyPair.slice(0, 3);
+	var quote = currencyPair.slice(3, 6);
+	var end = countDays(1);
+	var start = countDays(30);
+	// One request for the whole range; ECB publishes no rates on weekends and holidays
+	var forexUri = `https://api.frankfurter.dev/v1/${toIso(start)}..${toIso(end)}?base=${base}&symbols=${quote}`;
+	fetch(forexUri)
+		.then(response => response.json())
+		.then(json => {
+			var objDateRateForex = {};
+			for (var date in json.rates) {
+				objDateRateForex[date.split('-').join('')] = parseFloat(json.rates[date][quote].toFixed(5));
 			}
-		);
-	}
+			forexSpiner.style.display = "none";
+			forexChart.style.display = "block";
+			addChart(container, currencyPair, objDateRateForex);
+		});
 }
 
 var nbuChart = document.getElementById('nbu-chart');
@@ -46,22 +46,21 @@ $('.nbu-grid tr').click(function() {
 
 function buildGraphNbu (currencyCode) {
 	var container = 'nbu-chart';
-	var objDateRateNbu = {};
+	var requests = [];
 	for (var i = 1; i < 31; i++) {
-		var yyyymmdd = countDays(i);
-		var nbuUri = `https://allow-any-origin.appspot.com/https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyCode}&date=${yyyymmdd}&json`;
-		fetch(nbuUri)
-			.then(response => response.json())
-			.then(json => {
-				objDateRateNbu[Object.values(json[0])[4].split('.').reverse().join('')] = parseFloat(Object.values(json[0])[2].toFixed(3));
-				if (Object.keys(objDateRateNbu).length === 30) {
-					nbuSpiner.style.display = "none";
-					nbuChart.style.display = "block";
-					var plotChartNbu = addChart (container, currencyCode, objDateRateNbu);
-				}
-			}
-		);
+		var nbuUri = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyCode}&date=${countDays(i)}&json`;
+		requests.push(fetch(nbuUri).then(response => response.json()).catch(() => []));
 	}
+	// A failed day leaves a gap in the chart instead of blocking it
+	Promise.all(requests).then(days => {
+		var objDateRateNbu = {};
+		days.filter(json => json.length).forEach(json => {
+			objDateRateNbu[json[0].exchangedate.split('.').reverse().join('')] = parseFloat(json[0].rate.toFixed(3));
+		});
+		nbuSpiner.style.display = "none";
+		nbuChart.style.display = "block";
+		addChart(container, currencyCode, objDateRateNbu);
+	});
 }
 
 function countDays (i) {
@@ -73,6 +72,10 @@ function countDays (i) {
 	(month.length < 2) ? month = "0" + month : month;
 	(day.length < 2) ? day = "0" + day : day;
 	return `${year + month + day}`;
+}
+
+function toIso (yyyymmdd) {
+	return `${yyyymmdd.slice(0, 4)}-${yyyymmdd.slice(4, 6)}-${yyyymmdd.slice(6, 8)}`;
 }
 
 function addChart (container, name, objDateRate) {
@@ -123,9 +126,8 @@ function addChart (container, name, objDateRate) {
 			type: 'area',
 			name: name,
 			shadow: true,
-			pointStart: Date.UTC(Object.keys(objDateRate)[0].slice(0, 4), parseInt(Object.keys(objDateRate)[0].slice(4, 6)) - 1, Object.keys(objDateRate)[0].slice(6, 8)),
-			pointIntervalUnit: 'day',
-			data: Object.values(objDateRate)
+			// [timestamp, rate] pairs: days without a rate (weekends, failed requests) stay as gaps
+			data: Object.keys(objDateRate).map(d => [Date.UTC(d.slice(0, 4), parseInt(d.slice(4, 6)) - 1, d.slice(6, 8)), objDateRate[d]])
 		}]
 	});
 }
