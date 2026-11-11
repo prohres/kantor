@@ -3,6 +3,8 @@
 Currency exchange site (static HTML / JS), shipped as a container: nginx as a non-root user,
 `/health` for the load balancer, `/version.json` with the commit SHA.
 
+Published on GitHub Pages from `develop`: https://prohres.github.io/kantor/
+
 Rates come from keyless open sources: [Frankfurter](https://frankfurter.dev) (ECB reference rates) and
 the [NBU](https://bank.gov.ua/ua/open-data/api-dev) official rates. Kantor buy / sell prices are derived from the NBU rate with a per-day spread (buy ×0.90–0.99,
 sell ×1.01–1.10) that is pseudo-random but seeded by date and currency, so a day always shows the same prices.
@@ -28,5 +30,3 @@ Run workflow with an empty `image-ref` repeats the whole pipeline for the curren
 docker build --build-arg VERSION=local -t kantor .
 docker run --rm -p 8080:8080 kantor     # http://localhost:8080
 ```
-
-The old version is still published on GitHub Pages from `master`: https://prohres.github.io/kantor/
