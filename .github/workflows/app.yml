@@ -1,0 +1,56 @@
+name: app
+
+# PR: lint, build and scan (no AWS access). Push to develop: build once -> deploy the digest to dev
+# -> approval in the prod environment -> tag the same digest prod-<sha>.
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+
+permissions: {}
+
+concurrency:
+  group: app-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }} # a new PR commit supersedes; never cut a deploy
+
+jobs:
+  build:
+    permissions:
+      contents: read
+      id-token: write
+    uses: prohres/ci-templates/.github/workflows/container-build.yml@feat/app-pipeline # canary; @v1 after release
+    with:
+      image-name: kantor
+      push: ${{ github.event_name == 'push' }}
+      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-build
+
+  deploy-dev:
+    needs: build
+    if: github.event_name == 'push'
+    permissions:
+      id-token: write
+    uses: prohres/ci-templates/.github/workflows/deploy-ecs.yml@feat/app-pipeline
+    with:
+      environment: dev
+      image-ref: ${{ needs.build.outputs.image-ref }}
+      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-deploy-dev
+      target-role-arn: arn:aws:iam::699353518928:role/app-deploy
+      target-account-id: "699353518928"
+      cluster: kantor-dev
+      service: kantor
+      task-family: kantor-dev
+      container-name: web
+      smoke-url: http://kantor-dev-1147219368.eu-central-1.elb.amazonaws.com/version.json
+      smoke-expect: ${{ github.sha }}
+
+  promote-prod:
+    needs: [build, deploy-dev]
+    permissions:
+      id-token: write
+    uses: prohres/ci-templates/.github/workflows/promote-ecr.yml@feat/app-pipeline
+    with:
+      environment: prod
+      image-ref: ${{ needs.build.outputs.image-ref }}
+      tag: prod-${{ github.sha }}
+      gha-role-arn: arn:aws:iam::686337362279:role/gha-app-promote
