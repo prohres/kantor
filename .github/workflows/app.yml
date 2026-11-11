@@ -33,6 +33,7 @@ jobs:
       image-name: kantor
       push: ${{ github.event_name != 'pull_request' }}
       gha-role-arn: arn:aws:iam::${{ vars.CI_ACCOUNT_ID }}:role/gha-app-build
+      registry-account-id: ${{ vars.DEV_ACCOUNT_ID }} # the registry lives with the stack in sketch-dev
 
   deploy-dev:
     needs: build
@@ -40,7 +41,7 @@ jobs:
     if: >-
       always() && github.event_name != 'pull_request' && (needs.build.result == 'success'
       || (needs.build.result == 'skipped'
-      && startsWith(inputs.image-ref, format('{0}.dkr.ecr.eu-central-1.amazonaws.com/kantor@sha256:', vars.CI_ACCOUNT_ID))))
+      && startsWith(inputs.image-ref, format('{0}.dkr.ecr.eu-central-1.amazonaws.com/kantor@sha256:', vars.DEV_ACCOUNT_ID))))
     permissions:
       id-token: write
     uses: prohres/ci-templates/.github/workflows/deploy-ecs.yml@v1
